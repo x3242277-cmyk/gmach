@@ -1,0 +1,1148 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>גמ״ח קהילתי | נותנים מקום לטוב</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Jerusalem photos: David Holifield (unsplash.com/photos/Kltv_Kh0j7g) and Elena Ivanov (unsplash.com/photos/gyBILpDMrDc), under unsplash.com/license. -->
+<style>
+  :root{
+    --bg:#f7f9fc;--surface:#ffffff;
+    --sidebar-grad:linear-gradient(175deg,#0d0d76 0%,#070762 55%,#04042e 100%);
+    --sidebar-text:#eef1fb;--sidebar-text-dim:rgba(238,241,251,.6);--sidebar-active:rgba(43,127,255,.22);
+    --text:#101225;--text-muted:#68708a;--border:#e4e8f2;
+    --brand-500:#2b7fff;--brand-600:#0066ff;--brand-700:#003d99;
+    --brand-grad:linear-gradient(135deg,#3f90ff 0%,#0052cc 100%);
+    --blue-mid:#4d8ff7;--blue-mid-grad:linear-gradient(135deg,#8fb9ff 0%,#3868c9 100%);
+    --accent-tint:#e6edff;
+    --success:#1f8a5f;--success-grad:linear-gradient(135deg,#3aab7d 0%,#146b45 100%);--success-tint:#e2f5ec;
+    --warning:#b8862e;--warning-tint:#f7ecd6;
+    --danger:#c23b34;--danger-grad:linear-gradient(135deg,#e0645c 0%,#a52c26 100%);--danger-tint:#fbe6e4;
+    --neutral-tint:#eef1f7;
+    --radius-lg:20px;--radius-md:14px;--radius-sm:10px;--radius-pill:999px;
+    --shadow-sm:0 1px 2px rgba(10,15,40,.06);--shadow-md:0 14px 34px -12px rgba(10,15,45,.18);--shadow-lift:0 18px 44px -12px rgba(10,15,45,.28);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Assistant',Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+  button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+  button{cursor:pointer}
+  h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.01em}
+  p{margin:0}
+
+  .demo-ribbon{position:fixed;bottom:14px;left:14px;background:#0f1230;color:#eef1fb;font-size:12px;font-weight:500;padding:8px 14px;border-radius:999px;box-shadow:var(--shadow-md);z-index:999;opacity:.94;letter-spacing:.2px}
+
+  #screen-login.hidden{display:none}
+  #screen-login{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:24px;background:var(--bg)}
+  .login-shape1{position:absolute;top:-10%;left:-12%;width:62%;height:58%;background:linear-gradient(135deg,#3f90ff 0%,#0047b3 100%);border-radius:0 0 240px 0;z-index:0}
+  .login-shape2{position:absolute;top:-16%;left:-18%;width:38%;height:40%;background:linear-gradient(135deg,rgba(157,196,255,.85),rgba(77,143,247,.85));border-radius:0 0 190px 0;z-index:0}
+  .login-card-wrap{position:relative;z-index:1;width:100%;max-width:440px}
+  .login-card{background:#fff;border-radius:32px;box-shadow:var(--shadow-lift);padding:46px 40px}
+  .hero-emblem{width:56px;height:56px;border-radius:16px;background:var(--brand-grad);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:24px;color:#fff;margin:0 auto 18px;box-shadow:var(--shadow-md)}
+  .login-card h2{font-size:22px;margin-bottom:6px;text-align:center}
+  .login-sub{color:var(--text-muted);font-size:13.5px;margin-bottom:8px;text-align:center}
+  .login-form{margin-top:28px}
+  .field-tinted input{background:var(--accent-tint);border-color:transparent}
+  .field{text-align:right;margin-bottom:18px;position:relative}
+  .field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px;color:var(--text)}
+  .field input, .field select, .field textarea{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:#fff;min-height:46px;transition:.15s}
+  .field textarea{min-height:auto}
+  .field input:focus, .field select:focus, .field textarea:focus{outline:none;border-color:var(--brand-600);box-shadow:0 0 0 3px rgba(0,102,255,.16)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 22px;border-radius:var(--radius-pill);border:1.5px solid transparent;font-weight:700;font-size:14.5px;transition:.15s}
+  .btn-primary{background:var(--brand-grad);color:#fff;box-shadow:0 8px 20px -6px rgba(0,82,204,.5)}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 26px -6px rgba(0,82,204,.6)}
+  .btn-block{width:100%}
+  .btn-ghost{background:transparent;border-color:var(--border);color:var(--text)}
+  .btn-ghost:hover{background:var(--neutral-tint)}
+  .btn-sm{min-height:38px;padding:0 15px;font-size:13px}
+  .login-note{margin-top:22px;font-size:12px;color:var(--text-muted);line-height:1.6;text-align:center}
+
+  #app-shell{display:none;min-height:100vh}
+  #app-shell.active{display:flex;flex-direction:column}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand-mark{width:38px;height:38px;border-radius:10px;background:var(--brand-grad);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;flex-shrink:0;box-shadow:var(--shadow-sm)}
+  .brand-name{font-size:15px;font-weight:800;line-height:1.3;color:var(--text)}
+  .brand-sub{font-size:11px;color:var(--text-muted)}
+  .nav-btn{display:flex;align-items:center;gap:12px;width:100%;background:transparent;border:none;border-inline-end:3px solid transparent;color:var(--sidebar-text);padding:10px 12px;border-radius:10px;font-size:13.5px;font-weight:600;text-align:right;min-height:42px;transition:.15s;position:relative;z-index:1}
+  .nav-btn svg{flex-shrink:0;opacity:.8}
+  .nav-btn:hover{background:rgba(255,255,255,.07)}
+  .nav-btn.active{background:var(--sidebar-active);color:#fff;border-inline-end-color:var(--brand-500)}
+  .nav-btn.active svg{opacity:1;color:#8fbaff}
+  .icon-btn{width:38px;height:38px;border-radius:999px;background:transparent;border:none;color:var(--text-muted);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .icon-btn:hover{background:var(--neutral-tint);color:var(--text)}
+
+  .topnav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 32px;height:70px;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:40}
+  .topnav-links{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;flex-wrap:wrap}
+  .tlink{display:flex;align-items:center;gap:8px;padding:10px 16px;border:none;background:transparent;border-radius:999px;font-size:13.5px;font-weight:700;color:var(--text-muted);white-space:nowrap}
+  .tlink svg{flex-shrink:0;opacity:.75}
+  .tlink:hover{background:var(--neutral-tint)}
+  .tlink.active{background:var(--accent-tint);color:var(--brand-700)}
+  .tlink.active svg{opacity:1}
+  .topnav-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+  .topnav-profile{display:flex;align-items:center;gap:9px;padding:6px 14px 6px 8px;border-radius:999px;background:var(--neutral-tint)}
+  .topnav-profile .avatar{background:var(--brand-grad);color:#fff}
+  .topnav-profile .tp-name{font-size:12.5px;font-weight:700;color:var(--text)}
+  .topnav-profile .tp-role{font-size:10.5px;color:var(--text-muted)}
+
+  .dash-hero{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:44px 4px 36px;flex-wrap:wrap}
+  .dash-eyebrow{font-size:14px;font-weight:700;color:var(--text-muted);margin-bottom:10px}
+  .dash-title{font-size:32px;color:#0d0d5c;margin-bottom:10px}
+  .dash-title .accent{color:var(--brand-600)}
+  .dash-sub{font-size:13.5px;color:var(--text-muted)}
+  .quicklinks{display:flex;gap:6px;background:#f2f4f9;border-radius:22px;padding:20px 16px;margin-bottom:52px;flex-wrap:wrap;justify-content:space-around}
+  .qlink{display:flex;flex-direction:column;align-items:center;gap:9px;background:transparent;border:none;padding:8px 16px;border-radius:14px;font-size:12px;font-weight:700;color:var(--text);transition:.15s}
+  .qlink:hover{background:#fff;box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+  .qicon{width:46px;height:46px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--brand-600);box-shadow:var(--shadow-sm)}
+
+  .main-col{flex:1;min-width:0;display:flex;flex-direction:column}
+  .topbar{display:none;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--surface);border-bottom:1px solid var(--border)}
+  .topbar .brand{padding:0}
+  .content{flex:1;padding:36px 36px 32px;overflow-y:auto}
+  .view{display:none}
+  .view.active{display:block}
+  .view-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:36px;flex-wrap:wrap;padding-top:6px}
+  .view-header h2{font-size:28px;color:#0d0d5c}
+  .view-header .sub{color:var(--text-muted);font-size:13.5px;margin-top:7px}
+
+  .eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .eyebrow .bar{width:4px;height:20px;border-radius:3px;background:var(--brand-grad)}
+  .eyebrow span{font-size:12.5px;font-weight:800;color:var(--brand-700);text-transform:uppercase;letter-spacing:.05em}
+  .section-label{font-size:11px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin:4px 0 10px}
+
+  
+  
+  
+  
+  
+
+  .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;box-shadow:var(--shadow-sm);display:flex;align-items:flex-start;gap:13px;transition:.2s}
+  .stat-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+  .stat-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;box-shadow:var(--shadow-sm)}
+  .stat-icon.gold{background:var(--brand-grad)}
+  .stat-icon.teal{background:var(--blue-mid-grad)}
+  .stat-icon.danger{background:var(--danger-grad)}
+  .stat-body .label{font-size:12px;color:var(--text-muted);font-weight:700;margin-bottom:5px}
+  .stat-body .value{font-size:25px;font-weight:800;line-height:1}
+  .stat-body .trend{font-size:11px;font-weight:700;margin-top:6px}
+  .trend.up{color:var(--success)}
+  .trend.flat{color:var(--text-muted)}
+
+  .cols-2{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-bottom:40px}
+  .cols-2b{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)}
+  .panel-head{padding:15px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .panel-head h3{font-size:14.5px}
+  .panel-head .link{font-size:12px;font-weight:700;color:var(--brand-700);background:none;border:none}
+  .panel-body{padding:4px 0}
+  .list-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;border-bottom:1px solid var(--border)}
+  .list-row:last-child{border-bottom:none}
+  .list-row .who{font-weight:700;font-size:13.5px}
+  .list-row .meta{font-size:12px;color:var(--text-muted);margin-top:3px}
+  .list-row .amount{font-weight:800;font-size:14px;white-space:nowrap}
+
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+  .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+  .badge-due{background:var(--warning-tint);color:var(--warning)}
+  .badge-overdue{background:var(--danger-tint);color:var(--danger)}
+  .badge-active{background:var(--neutral-tint);color:#565f5a}
+  .badge-paid{background:var(--success-tint);color:var(--success)}
+
+  .chart-card{padding:18px 20px}
+  .donut-wrap{display:flex;align-items:center;gap:20px;padding:4px 2px}
+  .donut{width:120px;height:120px;border-radius:50%;flex-shrink:0;background:conic-gradient(var(--brand-600) 0% 50%, var(--danger) 50% 75%, var(--blue-mid) 75% 100%);position:relative;box-shadow:var(--shadow-sm)}
+  .donut-hole{position:absolute;inset:15px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .donut-hole b{font-size:20px;font-weight:800}
+  .donut-hole span{font-size:10px;color:var(--text-muted);font-weight:600}
+  .legend{display:flex;flex-direction:column;gap:9px;flex:1}
+  .legend-row{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600}
+  .legend-row .sw{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+  .legend-row .cnt{margin-inline-start:auto;font-weight:800;color:var(--text)}
+  .chart-note{font-size:11px;color:var(--text-muted);margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
+
+  .bars{display:flex;align-items:flex-end;gap:10px;height:110px;padding:6px 4px 0}
+  .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:7px}
+  .bar{width:100%;max-width:30px;border-radius:8px 8px 3px 3px;background:var(--blue-mid-grad)}
+  .bar.hi{background:var(--brand-grad)}
+  .bar-col span{font-size:10px;color:var(--text-muted);font-weight:700}
+
+  .toolbar{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+  .search-box{flex:1;min-width:200px;display:flex;align-items:center;gap:8px;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:0 14px;background:#fff;min-height:42px}
+  .search-box input{border:none;flex:1;min-height:40px;background:transparent}
+  .search-box input:focus{outline:none}
+  .filter-tabs{display:flex;gap:6px;background:var(--neutral-tint);padding:4px;border-radius:var(--radius-sm)}
+  .filter-tab{padding:7px 13px;border:none;background:transparent;border-radius:8px;font-size:12.5px;font-weight:700;color:var(--text-muted)}
+  .filter-tab.active{background:#fff;color:var(--text);box-shadow:var(--shadow-sm)}
+
+  table{width:100%;border-collapse:collapse}
+  th{text-align:right;font-size:11px;color:var(--text-muted);font-weight:800;text-transform:uppercase;letter-spacing:.03em;padding:11px 16px;border-bottom:1.5px solid var(--border);background:#fbfcfe}
+  td{padding:13px 16px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle}
+  tr{transition:.12s}
+  tbody tr:hover{background:#fbfcfe}
+  tr:last-child td{border-bottom:none}
+  .cell-strong{font-weight:800}
+  .cell-muted{color:var(--text-muted);font-size:12px}
+  .table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)}
+  .pager{display:flex;align-items:center;justify-content:space-between;margin-top:12px;flex-wrap:wrap;gap:10px}
+  .pager-btns{display:flex;gap:6px}
+
+  .avatar{width:34px;height:34px;border-radius:50%;background:var(--accent-tint);color:var(--brand-700);display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:12.5px;flex-shrink:0}
+  .person-cell{display:flex;align-items:center;gap:10px}
+
+  .banner{display:flex;gap:14px;align-items:flex-start;background:var(--success-tint);border:1px solid #cdeadb;color:#155d3d;border-radius:var(--radius-lg);padding:16px 18px;margin-bottom:18px}
+  .banner .ic{width:36px;height:36px;border-radius:10px;background:var(--success-grad);color:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+  .banner b{display:block;margin-bottom:3px;font-size:14px}
+  .banner p{font-size:12.5px;line-height:1.6;opacity:.92}
+
+  .tabs{display:inline-flex;gap:4px;background:var(--neutral-tint);padding:4px;border-radius:var(--radius-sm);margin-bottom:16px}
+  .tab-btn{padding:8px 16px;border:none;background:transparent;border-radius:8px;font-size:13px;font-weight:700;color:var(--text-muted)}
+  .tab-btn.active{background:#fff;color:var(--text);box-shadow:var(--shadow-sm)}
+  .tab-panel{display:none}
+  .tab-panel.active{display:block}
+
+  .detail-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:start}
+  .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;padding:18px}
+  .kv .k{font-size:11px;color:var(--text-muted);font-weight:700;margin-bottom:4px;text-transform:uppercase;letter-spacing:.02em}
+  .kv .v{font-size:14px;font-weight:700}
+  .doc-row{display:flex;align-items:center;gap:11px;padding:11px 18px;border-bottom:1px solid var(--border)}
+  .doc-row:last-child{border-bottom:none}
+  .doc-icon{width:32px;height:32px;border-radius:9px;background:var(--neutral-tint);color:var(--brand-700);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10.5px;font-weight:800}
+  .doc-name{font-size:12.5px;font-weight:700;flex:1}
+  .doc-meta{font-size:11px;color:var(--text-muted);margin-top:2px}
+  .doc-actions{display:flex;gap:6px;flex-shrink:0}
+  .doc-icon-btn{width:32px;height:32px;border-radius:9px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;color:var(--text-muted);flex-shrink:0}
+  .doc-icon-btn:hover{background:var(--neutral-tint);color:var(--text)}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:var(--neutral-tint);border-radius:999px;padding:7px 13px;font-size:12.5px;font-weight:700}
+
+  .form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm)}
+  .form-section-title{font-size:12px;font-weight:800;color:var(--brand-700);text-transform:uppercase;letter-spacing:.05em;margin:20px 0 12px;display:flex;align-items:center;gap:8px}
+  .form-section-title::before{content:"";width:16px;height:2px;background:var(--brand-500);border-radius:2px}
+  .form-section-title:first-child{margin-top:0}
+  .checkbox-row{display:flex;align-items:center;gap:10px;padding:9px 0}
+  .checkbox-row input{width:20px;height:20px;accent-color:var(--brand-600)}
+  .checkbox-row label{font-size:13.5px;font-weight:600}
+  .hint{font-size:11.5px;color:var(--text-muted);margin:-4px 0 4px;line-height:1.6}
+  .form-actions{display:flex;gap:10px;justify-content:space-between;margin-top:22px;border-top:1px solid var(--border);padding-top:18px}
+
+  .wizard-steps{display:flex;align-items:center;gap:6px;margin-bottom:22px;flex-wrap:wrap}
+  .wstep{display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;color:var(--text-muted);white-space:nowrap}
+  .wstep .wnum{width:22px;height:22px;border-radius:50%;background:var(--neutral-tint);color:var(--text-muted);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
+  .wstep.active{color:var(--text)}
+  .wstep.active .wnum{background:var(--brand-grad);color:#fff}
+  .wsep{width:16px;height:2px;background:var(--border);flex-shrink:0}
+  .wizard-panel{display:none}
+  .wizard-panel.active{display:block}
+
+  .suggest-box{position:absolute;top:100%;left:0;right:0;background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-sm);margin-top:6px;box-shadow:var(--shadow-lift);z-index:30;overflow:hidden;display:none}
+  .suggest-box.show{display:block}
+  .suggest-box button{display:flex;align-items:center;gap:9px;width:100%;padding:10px 14px;border:none;background:#fff;text-align:right;font-size:13px;font-weight:700;border-bottom:1px solid var(--border)}
+  .suggest-box button:hover{background:var(--neutral-tint)}
+  .suggest-box .tag{margin-inline-start:auto;font-size:10.5px;font-weight:600;color:var(--text-muted)}
+  .suggest-hint{padding:8px 14px;font-size:10.5px;color:var(--text-muted);background:#fbfcfe}
+
+  .archive-row-name{font-weight:800}
+  .archive-meta{font-size:12px;color:var(--text-muted);margin-top:2px}
+
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:#0f1230;color:#fff;padding:13px 22px;border-radius:12px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lift);opacity:0;transition:.25s;pointer-events:none;z-index:1000;max-width:88vw;text-align:center}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .bottom-nav{display:none}
+
+  @media (max-width: 980px){
+    .demo-ribbon{bottom:auto;top:10px;left:10px;font-size:10px;padding:5px 10px}
+    .login-card{padding:32px 22px}
+    .stats-row{grid-template-columns:1fr}
+    .cols-2,.cols-2b{grid-template-columns:1fr}
+    .detail-grid{grid-template-columns:1fr}
+    .field-grid{grid-template-columns:1fr}
+    .topnav{display:none}
+    .topbar{display:flex}
+    .dash-hero{padding:28px 2px 26px}
+    .view-header{margin-bottom:24px}
+    .view-header h2{font-size:22px}
+    .dash-title{font-size:24px}
+    .quicklinks{margin-bottom:32px}
+    .content{padding:16px 14px 90px}
+    .bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:var(--sidebar-grad);padding:5px 2px calc(5px + env(safe-area-inset-bottom));justify-content:space-around;z-index:50}
+    .bottom-nav .nav-btn{flex-direction:column;gap:2px;font-size:9.5px;padding:6px 2px;border-radius:9px;text-align:center;border-inline-end:none;min-height:auto}
+    .bottom-nav .nav-btn.active{background:var(--sidebar-active)}
+  }
+
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:#d6ddec;border-radius:10px}
+</style>
+<link rel="stylesheet" href="assets/redesign.css">
+<link rel="stylesheet" href="assets/calendar.css">
+<link rel="stylesheet" href="assets/app-refresh.css">
+<link rel="stylesheet" href="assets/loan-workspace.css">
+<link rel="stylesheet" href="assets/deposits.css">
+</head>
+<body>
+
+<!-- ====================== APP SHELL ====================== -->
+<div id="app-shell" class="active">
+
+  <header class="topnav">
+    <div class="brand"><div class="brand-mark"><img src="assets/jerusalem-mark.svg" alt="" width="35" height="35"></div><div><div class="brand-name">גמ״ח קהילתי</div><div class="brand-sub">מרחב הניהול שלכם</div></div></div>
+
+    <nav class="topnav-links">
+      <button class="tlink active" data-target="view-dashboard" onclick="showView('view-dashboard',this)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        סקירה כללית
+      </button>
+      <button class="tlink" data-target="view-loans" onclick="showView('view-loans',this)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+        הלוואות
+      </button>
+      <button class="tlink" data-target="view-calendar" onclick="showView('view-calendar',this)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        יומן החזרים
+      </button>
+      <button class="tlink" data-target="view-people" onclick="showView('view-people',this)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c.8-3.6 3-5.4 5.5-5.4s4.7 1.8 5.5 5.4"/><circle cx="17.5" cy="8.5" r="2.6"/><path d="M15.8 14.9c2.6.3 4 1.9 4.7 5.1"/></svg>
+        לווים וערבים
+      </button>
+      <button class="tlink" data-target="view-archive" onclick="showView('view-archive',this)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="4" width="17" height="4.5" rx="1"/><path d="M5 8.5V18a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 18V8.5"/><path d="M10 12.5h4"/></svg>
+        ארכיון
+      </button>
+    </nav>
+
+    <div class="topnav-actions">
+      <button class="icon-btn" title="הגדרות" data-target="view-settings" onclick="showView('view-settings',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l1.9-1.4-2-3.4-2.2.7a7.6 7.6 0 0 0-2.6-1.5L14 2.5h-4l-.5 2.4a7.6 7.6 0 0 0-2.6 1.5l-2.2-.7-2 3.4L4.6 10.5a7.6 7.6 0 0 0 0 3L2.7 15l2 3.4 2.2-.7c.75.66 1.63 1.17 2.6 1.5l.5 2.4h4l.5-2.4a7.6 7.6 0 0 0 2.6-1.5l2.2.7 2-3.4-1.9-1.5Z"/></svg></button>
+      <div class="topnav-profile"><div class="avatar">ל</div><div><div class="tp-name">הרב לרנר</div><div class="tp-role">מנהל מערכת</div></div></div>
+    </div>
+  </header>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-target="view-dashboard" onclick="showView('view-dashboard',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>דשבורד</button>
+    <button class="nav-btn" data-target="view-loans" onclick="showView('view-loans',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>הלוואות</button>
+    <button class="nav-btn" data-target="view-calendar" onclick="showView('view-calendar',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>יומן</button>
+    <button class="nav-btn" data-target="view-people" onclick="showView('view-people',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c.8-3.6 3-5.4 5.5-5.4s4.7 1.8 5.5 5.4"/><circle cx="17.5" cy="8.5" r="2.6"/><path d="M15.8 14.9c2.6.3 4 1.9 4.7 5.1"/></svg>אנשים</button>
+    <button class="nav-btn" data-target="view-archive" onclick="showView('view-archive',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="4" width="17" height="4.5" rx="1"/><path d="M5 8.5V18a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 18V8.5"/></svg>ארכיון</button>
+    <button class="nav-btn" data-target="view-settings" onclick="showView('view-settings',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l1.9-1.4-2-3.4-2.2.7a7.6 7.6 0 0 0-2.6-1.5L14 2.5h-4l-.5 2.4a7.6 7.6 0 0 0-2.6 1.5l-2.2-.7-2 3.4L4.6 10.5a7.6 7.6 0 0 0 0 3L2.7 15l2 3.4 2.2-.7c.75.66 1.63 1.17 2.6 1.5l.5 2.4h4l.5-2.4a7.6 7.6 0 0 0 2.6-1.5l2.2.7 2-3.4-1.9-1.5Z"/></svg>הגדרות</button>
+  </nav>
+
+  <div class="topbar">
+    <div class="brand"><div class="brand-mark"><img src="assets/jerusalem-mark.svg" alt="" width="32" height="32"></div><div class="brand-name">גמ״ח קהילתי</div></div>
+    <button class="btn btn-ghost btn-sm" onclick="showView('view-settings')">הגדרות</button>
+  </div>
+
+  <main class="content">
+
+      <!-- ============ DASHBOARD ============ -->
+      <section class="view active" id="view-dashboard">
+        <div class="dash-hero">
+          <div class="dash-hero-copy">
+            <div class="dash-eyebrow"><span aria-hidden="true">✦</span> שלום, הרב לרנר <span class="today-label" id="today-label"></span></div>
+            <h2 class="dash-title">סקירת פעילות</h2>
+            <p class="dash-sub">ההלוואות, ההחזרים ואנשי הקשר של הגמ״ח.</p>
+            <div class="dash-hero-actions"><button class="btn btn-primary" onclick="openLoanWizard()">הלוואה חדשה</button><button class="dash-hero-link" onclick="showView('view-calendar')">יומן ההחזרים</button></div>
+          </div>
+          <div class="dash-hero-image"><img src="assets/jerusalem-hero.jpg" alt="נוף ירושלים באור רך"></div>
+        </div>
+
+        <div class="quicklinks">
+          <button class="qlink" onclick="openLoanWizard()"><span class="qicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>הלוואה חדשה</button>
+          <button class="qlink" onclick="showView('view-loans')"><span class="qicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span>הלוואות</button>
+          <button class="qlink" onclick="showView('view-people')"><span class="qicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c.8-3.6 3-5.4 5.5-5.4s4.7 1.8 5.5 5.4"/><circle cx="17.5" cy="8.5" r="2.6"/><path d="M15.8 14.9c2.6.3 4 1.9 4.7 5.1"/></svg></span>לווים וערבים</button>
+          <button class="qlink" onclick="showView('view-calendar')"><span class="qicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>יומן החזרים</button>
+          <button class="qlink" onclick="showView('view-archive')"><span class="qicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="4" width="17" height="4.5" rx="1"/><path d="M5 8.5V18a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 18V8.5"/><path d="M10 12.5h4"/></svg></span>ארכיון</button>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-icon teal"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 15h4"/></svg></div>
+            <div class="stat-body"><div class="label">הלוואות פעילות</div><div class="value">4</div><div class="trend up">↑ הלוואה אחת מהחודש שעבר</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon gold"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 6.5c0-1.9-2.2-3-5-3s-5 1.4-5 3.2c0 4 10 2 10 6 0 1.8-2.2 3.3-5 3.3s-5-1.1-5-3"/></svg></div>
+            <div class="stat-body"><div class="label">סך הכול בחוץ</div><div class="value">25,000 ₪</div><div class="trend flat">פרוס על פני 4 הלוואות פעילות</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon danger"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 2.6 17.5A1.8 1.8 0 0 0 4.2 20h15.6a1.8 1.8 0 0 0 1.6-2.5L13.7 3.9a1.8 1.8 0 0 0-3.4 0Z"/></svg></div>
+            <div class="stat-body"><div class="label">הלוואות באיחור</div><div class="value">1</div><div class="trend" style="color:var(--danger)">דורש טיפול</div></div>
+          </div>
+        </div>
+
+        <div class="cols-2">
+          <div class="panel">
+            <div class="panel-head"><h3>מתקרבות למועד ההחזר</h3><button class="link" onclick="showView('view-calendar')">ליומן המלא ←</button></div>
+            <div class="panel-body">
+              <div class="list-row"><div><div class="who">יעקב כהן</div><div class="meta">הלוואה #1042 · 04.10.2026</div></div><div class="amount">5,000 ₪</div></div>
+              <div class="list-row"><div><div class="who">חנה גולדברג</div><div class="meta">הלוואה #1038 · 14.10.2026</div></div><div class="amount">10,000 ₪</div></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3>באיחור</h3><span class="badge badge-overdue">1 הלוואה</span></div>
+            <div class="panel-body">
+              <div class="list-row"><div><div class="who">דוד ישראלי</div><div class="meta">הלוואה #1041 · המועד היה 24.08.2026</div></div><div class="amount">7,000 ₪</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-label" style="margin:0 0 16px">תובנות ומגמות</div>
+        <div class="cols-2b">
+          <div class="panel chart-card">
+            <div class="eyebrow"><div class="bar"></div><span>פילוח הלוואות פעילות</span></div>
+            <div class="donut-wrap">
+              <div class="donut"><div class="donut-hole"><b>4</b><span>פעילות</span></div></div>
+              <div class="legend">
+                <div class="legend-row"><span class="sw" style="background:var(--brand-600)"></span>מתקרבות למועד<span class="cnt">2</span></div>
+                <div class="legend-row"><span class="sw" style="background:var(--danger)"></span>באיחור<span class="cnt">1</span></div>
+                <div class="legend-row"><span class="sw" style="background:var(--blue-mid)"></span>פעילות תקינה<span class="cnt">1</span></div>
+              </div>
+            </div>
+            <div class="chart-note">לא כולל הלוואות שנסגרו או שולמו — אלו מוצגות בארכיון ההיסטוריה בלבד.</div>
+          </div>
+          <div class="panel chart-card">
+            <div class="eyebrow"><div class="bar"></div><span>היקף הלוואות חדשות לפי חודש</span></div>
+            <div class="bars">
+              <div class="bar-col"><div class="bar" style="height:37%"></div><span>אפר׳</span></div>
+              <div class="bar-col"><div class="bar" style="height:62%"></div><span>מאי</span></div>
+              <div class="bar-col"><div class="bar" style="height:50%"></div><span>יוני</span></div>
+              <div class="bar-col"><div class="bar" style="height:87%"></div><span>יולי</span></div>
+              <div class="bar-col"><div class="bar" style="height:75%"></div><span>אוג׳</span></div>
+              <div class="bar-col"><div class="bar hi" style="height:100%"></div><span>ספט׳</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PEOPLE (tabs: לווים / ערבים) ============ -->
+      <section class="view" id="view-people">
+        <div class="people-feature">
+          <div class="people-feature-copy">
+            <span class="feature-kicker">אנשי קשר <span class="feature-count">9</span></span>
+            <h2>לווים וערבים</h2>
+            <p>האנשים שמאחורי כל הלוואה.</p>
+            <button class="btn btn-primary" onclick="openPersonWizard()">איש קשר חדש</button>
+          </div>
+          <div class="people-feature-art"><img src="assets/community-people.png" alt=""></div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('people', 'people-borrowers', this)">לווים (5)</button>
+          <button class="tab-btn" onclick="switchTab('people', 'people-guarantors', this)">ערבים (4)</button>
+        </div>
+
+        <div class="tab-panel active" id="people-borrowers">
+          <div class="toolbar"><div class="search-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input type="text" placeholder="חיפוש לווה לפי שם או טלפון..."></div></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>שם הלווה</th><th>טלפון</th><th>הלוואה נוכחית</th><th></th></tr></thead>
+              <tbody>
+                <tr onclick="showView('view-person-detail')" style="cursor:pointer"><td><div class="person-cell"><div class="avatar">י.כ</div><span class="cell-strong">יעקב כהן</span></div></td><td>050-1234567</td><td>#1042 · <span class="badge badge-due">מתקרב</span></td><td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showView('view-person-detail')">פרטים</button></td></tr>
+                <tr onclick="showView('view-person-detail')" style="cursor:pointer"><td><div class="person-cell"><div class="avatar">ד.י</div><span class="cell-strong">דוד ישראלי</span></div></td><td>054-3456789</td><td>#1041 · <span class="badge badge-overdue">באיחור</span></td><td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showView('view-person-detail')">פרטים</button></td></tr>
+                <tr onclick="showView('view-person-detail')" style="cursor:pointer"><td><div class="person-cell"><div class="avatar">ש.מ</div><span class="cell-strong">שרה מזרחי</span></div></td><td>050-9876543</td><td>#1040 · <span class="badge badge-active">פעילה</span></td><td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showView('view-person-detail')">פרטים</button></td></tr>
+                <tr onclick="showView('view-person-detail')" style="cursor:pointer"><td><div class="person-cell"><div class="avatar">ח.ג</div><span class="cell-strong">חנה גולדברג</span></div></td><td>053-6547890</td><td>#1038 · <span class="badge badge-due">מתקרב</span></td><td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showView('view-person-detail')">פרטים</button></td></tr>
+                <tr onclick="showView('view-person-detail')" style="cursor:pointer"><td><div class="person-cell"><div class="avatar">א.ו</div><span class="cell-strong">אברהם וייס</span></div></td><td>050-2223334</td><td>#1039 · <span class="badge badge-paid">שולמה</span></td><td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showView('view-person-detail')">פרטים</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pager"><span class="cell-muted">מציג 1–5 מתוך 5</span><div class="pager-btns"><button class="btn btn-ghost btn-sm" disabled>→ הקודם</button><button class="btn btn-ghost btn-sm" disabled>הבא ←</button></div></div>
+        </div>
+
+        <div class="tab-panel" id="people-guarantors">
+          <div class="toolbar"><div class="search-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input type="text" placeholder="חיפוש ערב לפי שם או טלפון..."></div></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>שם הערב</th><th>טלפון</th><th>ערב עבור</th><th></th></tr></thead>
+              <tbody>
+                <tr onclick="showView('view-person-detail')" style="cursor:pointer"><td><div class="person-cell"><div class="avatar">מ.ל</div><span class="cell-strong">משה לוי</span></div></td><td>052-2345678</td><td>הלוואה #1042 · יעקב כהן</td><td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showView('view-person-detail')">פרטים</button></td></tr>
+                <tr onclick="showView('view-person-detail')" style="cursor:pointer"><td><div class="person-cell"><div class="avatar">י.ש</div><span class="cell-strong">יוסף שטרן</span></div></td><td>057-3334445</td><td>הלוואה #1042 · יעקב כהן</td><td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showView('view-person-detail')">פרטים</button></td></tr>
+                <tr onclick="showView('view-person-detail')" style="cursor:pointer"><td><div class="person-cell"><div class="avatar">י.כ</div><span class="cell-strong">יעקב כהן</span></div></td><td>050-1234567</td><td>הלוואה #1040 · שרה מזרחי</td><td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showView('view-person-detail')">פרטים</button></td></tr>
+                <tr onclick="showView('view-person-detail')" style="cursor:pointer"><td><div class="person-cell"><div class="avatar">ר.א</div><span class="cell-strong">רחל אברהם</span></div></td><td>058-1112223</td><td>הלוואה #1040 · שרה מזרחי</td><td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showView('view-person-detail')">פרטים</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pager"><span class="cell-muted">מציג 1–4 מתוך 4</span><div class="pager-btns"><button class="btn btn-ghost btn-sm" disabled>→ הקודם</button><button class="btn btn-ghost btn-sm" disabled>הבא ←</button></div></div>
+        </div>
+      </section>
+
+      <!-- ============ PERSON DETAIL ============ -->
+      <section class="view" id="view-person-detail">
+        <div class="view-header">
+          <div>
+            <button class="btn btn-ghost btn-sm" onclick="showView('view-people')" style="margin-bottom:10px">→ חזרה לרשימת אנשי הקשר</button>
+            <h2>יעקב כהן</h2>
+            <p class="sub">לווה וגם ערב · חבר קהילה מאז 2024</p>
+          </div>
+          <button class="btn btn-primary">עריכת פרטים</button>
+        </div>
+
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('pd', 'pd-info', this)">פרטים אישיים</button>
+          <button class="tab-btn" onclick="switchTab('pd', 'pd-loans', this)">הלוואות וערבויות</button>
+          <button class="tab-btn" onclick="switchTab('pd', 'pd-docs', this)">מסמכים</button>
+        </div>
+
+        <div class="tab-panel active" id="pd-info">
+          <div class="panel" style="margin-bottom:18px">
+            <div class="panel-head"><h3>פרטים אישיים מלאים</h3></div>
+            <div class="field-grid">
+              <div class="kv"><div class="k">שם מלא</div><div class="v">יעקב כהן</div></div>
+              <div class="kv"><div class="k">תעודת זהות</div><div class="v">123456782</div></div>
+              <div class="kv"><div class="k">טלפון נייד</div><div class="v">050-1234567</div></div>
+              <div class="kv"><div class="k">טלפון בבית</div><div class="v">02-5551234</div></div>
+              <div class="kv" style="grid-column:1/-1"><div class="k">כתובת מגורים</div><div class="v">רח' הרב קוק 14, בני ברק</div></div>
+              <div class="kv"><div class="k">שם האישה</div><div class="v">רבקה כהן</div></div>
+              <div class="kv"><div class="k">ת.ז האישה</div><div class="v">987654321</div></div>
+              <div class="kv"><div class="k">מקום עבודה</div><div class="v">ישיבת "אור החיים"</div></div>
+              <div class="kv"><div class="k">טלפון בעבודה</div><div class="v">03-6001122</div></div>
+              <div class="kv" style="grid-column:1/-1"><div class="k">הופנה על ידי / ממליץ</div><div class="v">הרב שטיינברג</div></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3>הערות</h3></div>
+            <div class="panel-body" style="padding:16px 18px"><p style="font-size:13px;line-height:1.7;color:var(--text)">משפחה מוכרת וידועה בקהילה.</p></div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="pd-loans">
+          <div class="section-label">פעיל כעת</div>
+          <div class="panel" style="margin-bottom:20px">
+            <div class="panel-head"><h3>הלוואות וערבויות פעילות</h3><span class="badge badge-active">2</span></div>
+            <div class="panel-body">
+              <div class="list-row"><div><div class="who">הלוואה #1042</div><div class="meta">לווה · מתקרבת למועד ההחזר</div></div><div class="amount">5,000 ₪</div></div>
+              <div class="list-row"><div><div class="who">הלוואה #1040</div><div class="meta">ערב עבור שרה מזרחי · פעילה</div></div><div class="amount">3,000 ₪</div></div>
+            </div>
+          </div>
+          <div class="section-label">היסטוריה — לא פעיל, למידע בלבד</div>
+          <div class="panel" style="opacity:.65">
+            <div class="panel-body">
+              <div class="list-row"><div><div class="who" style="font-weight:600">הלוואה #0917</div><div class="meta">לווה · שולמה במלואה · נסגרה ב-2025</div></div><div class="amount" style="font-weight:600">3,000 ₪</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="pd-docs">
+          <div class="panel">
+            <div class="panel-head"><h3>מסמכים אישיים</h3></div>
+            <div class="panel-body">
+              <div class="doc-row"><div class="doc-icon">ת.ז</div><div class="doc-name">תעודת זהות – יעקב כהן</div><div class="doc-meta" style="margin-inline-start:auto">עודכן 01.03.2026</div></div>
+              <div class="doc-row"><div class="doc-icon">ת.ז</div><div class="doc-name">תעודת זהות – רבקה כהן (אישה)</div><div class="doc-meta" style="margin-inline-start:auto">עודכן 01.03.2026</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PERSON NEW ============ -->
+      <section class="view" id="view-person-new">
+        <div class="view-header">
+          <div>
+            <button class="btn btn-ghost btn-sm" onclick="showView('view-people')" style="margin-bottom:10px">→ ביטול וחזרה</button>
+            <h2>איש קשר חדש</h2>
+            <p class="sub">פרטי לווה או ערב, בפירוט מלא</p>
+          </div>
+        </div>
+        <div class="form-card">
+          <div class="wizard-steps">
+            <div class="wstep active" data-step="1"><span class="wnum">1</span>פרטים אישיים</div>
+            <div class="wsep"></div>
+            <div class="wstep" data-step="2"><span class="wnum">2</span>משפחה והערות</div>
+          </div>
+          <div class="wizard-panel active" data-panel="1">
+            <div class="field-grid" style="padding:0">
+              <div class="field"><label>שם פרטי</label><input type="text" placeholder="ישראל"></div>
+              <div class="field"><label>שם משפחה</label><input type="text" placeholder="ישראלי"></div>
+              <div class="field"><label>תעודת זהות</label><input type="text" placeholder="000000000"></div>
+              <div class="field"><label>טלפון נייד</label><input type="text" placeholder="050-0000000"></div>
+              <div class="field"><label>טלפון בבית</label><input type="text" placeholder="0X-0000000"></div>
+              <div class="field"><label>כתובת מגורים</label><input type="text" placeholder="רחוב, מספר, עיר"></div>
+              <div class="field"><label>דואר אלקטרוני</label><input type="email" placeholder="name@example.org"></div>
+            </div>
+          </div>
+          <div class="wizard-panel" data-panel="2">
+            <div class="field-grid" style="padding:0">
+              <div class="field"><label>שם בן/בת הזוג</label><input type="text"></div>
+              <div class="field"><label>ת.ז בן/בת הזוג</label><input type="text"></div>
+              <div class="field"><label>מקום עבודה</label><input type="text"></div>
+              <div class="field"><label>טלפון בעבודה</label><input type="text"></div>
+              <div class="field" style="grid-column:1/-1"><label>הופנה על ידי / ממליץ</label><input type="text"></div>
+              <div class="field" style="grid-column:1/-1"><label>הערות</label><textarea rows="2"></textarea></div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-ghost" id="wiz-person-prev" onclick="wizardPrev('wiz-person')" style="visibility:hidden">→ הקודם</button>
+            <button class="btn btn-primary" id="wiz-person-next" onclick="wizardNext('wiz-person')">הבא ←</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ LOANS LIST ============ -->
+      <section class="view" id="view-loans">
+        <div class="loans-heading">
+          <div class="loans-title-wrap"><div class="loans-heading-art"><img src="assets/community-lending.png" alt=""></div><div><h2>הלוואות</h2><span class="loans-count" id="loan-record-count">50 הלוואות</span></div></div>
+          <div class="loans-inline-stats" aria-label="תמונת מצב הלוואות">
+            <span><small>יתרה פתוחה</small><strong id="loans-outstanding">25,000 ₪</strong></span>
+            <span><small>פעילות</small><strong id="loans-active-count">4</strong></span>
+            <span class="inline-alert"><small>באיחור</small><strong id="loans-overdue-count">1</strong></span>
+          </div>
+          <button class="btn btn-primary" onclick="openLoanWizard()">הלוואה חדשה</button>
+        </div>
+        <div class="toolbar">
+          <div class="filter-tabs"><button class="filter-tab active">הכל</button><button class="filter-tab">פעילות</button><button class="filter-tab">באיחור</button><button class="filter-tab">שולמו</button></div>
+          <div class="search-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input type="text" placeholder="חיפוש לפי שם או מספר הלוואה..."></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>מס'</th><th>לווה</th><th>סכום</th><th>ניתנה</th><th>להחזרה</th><th>יתרה</th><th>סטטוס</th><th></th></tr></thead>
+            <tbody>
+              <tr><td class="cell-strong">#1042</td><td>יעקב כהן</td><td>5,000 ₪</td><td class="cell-muted">01.03.2026</td><td>04.10.2026</td><td>5,000 ₪</td><td><span class="badge badge-due">מתקרב</span></td><td><button class="btn btn-ghost btn-sm" onclick="showView('view-loan-detail')">פרטים</button></td></tr>
+              <tr><td class="cell-strong">#1041</td><td>דוד ישראלי</td><td>12,000 ₪</td><td class="cell-muted">15.10.2025</td><td>24.08.2026</td><td>7,000 ₪</td><td><span class="badge badge-overdue">באיחור</span></td><td><button class="btn btn-ghost btn-sm" onclick="showView('view-loan-detail')">פרטים</button></td></tr>
+              <tr><td class="cell-strong">#1040</td><td>שרה מזרחי</td><td>3,000 ₪</td><td class="cell-muted">10.06.2026</td><td>10.12.2026</td><td>3,000 ₪</td><td><span class="badge badge-active">פעילה</span></td><td><button class="btn btn-ghost btn-sm" onclick="showView('view-loan-detail')">פרטים</button></td></tr>
+              <tr style="opacity:.65"><td class="cell-strong">#1039</td><td>אברהם וייס</td><td>8,000 ₪</td><td class="cell-muted">01.01.2026</td><td>01.06.2026</td><td>0 ₪</td><td><span class="badge badge-paid">שולמה</span></td><td><button class="btn btn-ghost btn-sm" onclick="showView('view-loan-detail')">פרטים</button></td></tr>
+              <tr><td class="cell-strong">#1038</td><td>חנה גולדברג</td><td>15,000 ₪</td><td class="cell-muted">20.02.2026</td><td>14.10.2026</td><td>10,000 ₪</td><td><span class="badge badge-due">מתקרב</span></td><td><button class="btn btn-ghost btn-sm" onclick="showView('view-loan-detail')">פרטים</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pager"><span class="cell-muted">מציג 1–5 מתוך 5</span><div class="pager-btns"><button class="btn btn-ghost btn-sm" disabled>→ הקודם</button><button class="btn btn-ghost btn-sm" disabled>הבא ←</button></div></div>
+      </section>
+
+      <!-- ============ LOAN DETAIL ============ -->
+      <section class="view" id="view-loan-detail">
+        <div class="view-header">
+          <div>
+            <button class="btn btn-ghost btn-sm" onclick="showView('view-loans')" style="margin-bottom:10px">→ חזרה לרשימת ההלוואות</button>
+            <h2>הלוואה #1042 &nbsp;<span class="badge badge-due">מתקרבת למועד</span></h2>
+            <p class="sub">יעקב כהן · נפתחה 01.03.2026</p>
+          </div>
+          <button class="btn btn-primary">רישום תשלום</button>
+        </div>
+
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('ld', 'ld-info', this)">פרטי ההלוואה</button>
+          <button class="tab-btn" onclick="switchTab('ld', 'ld-docs', this)">מסמכים (7)</button>
+          <button class="tab-btn" onclick="switchTab('ld', 'ld-pay', this)">תשלומים ותזכורות</button>
+        </div>
+
+        <div class="tab-panel active" id="ld-info">
+          <div class="detail-grid">
+            <div class="panel">
+              <div class="panel-head"><h3>פרטי ההלוואה</h3></div>
+              <div class="field-grid">
+                <div class="kv"><div class="k">סכום שניתן</div><div class="v">5,000 ₪</div></div>
+                <div class="kv"><div class="k">יתרה לתשלום</div><div class="v">5,000 ₪</div></div>
+                <div class="kv"><div class="k">תאריך מתן</div><div class="v">01.03.2026</div></div>
+                <div class="kv"><div class="k">מועד החזרה</div><div class="v">04.10.2026</div></div>
+                <div class="kv"><div class="k">מטרת ההלוואה</div><div class="v">הוצאות רפואיות</div></div>
+                <div class="kv"><div class="k">ערבים (2)</div><div class="v">משה לוי, יוסף שטרן</div></div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h3>פרטי הלווה</h3></div>
+              <div class="panel-body" style="padding:16px 18px"><div class="person-cell"><div class="avatar">י.כ</div><div><div class="cell-strong">יעקב כהן</div><div class="cell-muted">050-1234567</div></div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="ld-docs">
+          <div class="panel">
+            <div class="panel-head"><h3>מסמכים מצורפים (7)</h3></div>
+            <div class="panel-body">
+              <div class="doc-row"><div class="doc-icon">ת.ז</div><div class="doc-name">תעודת זהות – יעקב כהן (לווה)</div><div class="doc-meta">01.03.2026</div></div>
+              <div class="doc-row"><div class="doc-icon">ת.ז</div><div class="doc-name">תעודת זהות – רבקה כהן (אשת הלווה)</div><div class="doc-meta">01.03.2026</div></div>
+              <div class="doc-row"><div class="doc-icon">שטר</div><div class="doc-name">שטר הלוואה חתום</div><div class="doc-meta">01.03.2026</div></div>
+              <div class="doc-row"><div class="doc-icon">ת.ז</div><div class="doc-name">תעודת זהות – משה לוי (ערב 1)</div><div class="doc-meta">02.03.2026</div></div>
+              <div class="doc-row"><div class="doc-icon">שטר</div><div class="doc-name">שטר ערבות – משה לוי (ערב 1)</div><div class="doc-meta">02.03.2026</div></div>
+              <div class="doc-row"><div class="doc-icon">ת.ז</div><div class="doc-name">תעודת זהות – יוסף שטרן (ערב 2)</div><div class="doc-meta">02.03.2026</div></div>
+              <div class="doc-row"><div class="doc-icon">שטר</div><div class="doc-name">שטר ערבות – יוסף שטרן (ערב 2)</div><div class="doc-meta">02.03.2026</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="ld-pay">
+          <div class="cols-2b">
+            <div class="panel">
+              <div class="panel-head"><h3>היסטוריית תשלומים</h3></div>
+              <div class="panel-body"><div class="list-row"><div><div class="who">אין תשלומים עדיין</div><div class="meta">ברגע שיתקבל תשלום, הוא יופיע כאן לצמיתות</div></div></div></div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h3>תזכורות להחזר</h3></div>
+              <div class="panel-body" style="padding:16px 18px;display:flex;flex-direction:column;gap:8px"><span class="chip">✓ אימייל</span><span class="chip">✓ וואטסאפ</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ NEW LOAN (5-step wizard) ============ -->
+      <section class="view" id="view-loan-new">
+        <div class="view-header">
+          <div>
+            <button class="btn btn-ghost btn-sm" onclick="showView('view-loans')" style="margin-bottom:10px">→ ביטול וחזרה</button>
+            <h2>הלוואה חדשה</h2>
+            <p class="sub">שלב אחר שלב — פרטי הלווה, שני הערבים וההלוואה</p>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="wizard-steps">
+            <div class="wstep active" data-step="1"><span class="wnum">1</span>הלווה</div><div class="wsep"></div>
+            <div class="wstep" data-step="2"><span class="wnum">2</span>ערב 1</div><div class="wsep"></div>
+            <div class="wstep" data-step="3"><span class="wnum">3</span>ערב 2</div><div class="wsep"></div>
+            <div class="wstep" data-step="4"><span class="wnum">4</span>ההלוואה</div><div class="wsep"></div>
+            <div class="wstep" data-step="5"><span class="wnum">5</span>מסמכים</div>
+          </div>
+
+          <div class="wizard-panel active" data-panel="1">
+            <p class="hint" style="margin-top:0">פרטי הלווה המלאים. ברוב המקרים מדובר בלווה חדש — אם השם שהוקלד תואם איש קשר קיים, הפרטים יתמלאו אוטומטית.</p>
+            <div class="field-grid" style="padding:0">
+              <div class="field" style="position:relative">
+                <label>שם מלא</label>
+                <input type="text" id="borrower-input" placeholder="לדוגמה: ישראל ישראלי" autocomplete="off" data-suggest="suggestions-borrower" oninput="filterNames(this)" onblur="hideSuggestLater(this)">
+                <div class="suggest-box" id="suggestions-borrower"></div>
+              </div>
+              <div class="field"><label>תעודת זהות</label><input type="text" id="borrower-idnum" placeholder="000000000"></div>
+              <div class="field"><label>טלפון נייד</label><input type="text" id="borrower-phone" placeholder="050-0000000"></div>
+              <div class="field" style="grid-column:1/-1"><label>כתובת מגורים</label><input type="text" id="borrower-address" placeholder="רחוב, מספר, עיר"></div>
+              <div class="field"><label>דואר אלקטרוני של הלווה</label><input type="email" id="borrower-email" placeholder="name@example.org"></div>
+            </div>
+          </div>
+
+          <div class="wizard-panel" data-panel="2">
+            <p class="hint" style="margin-top:0">נדרשים 2 ערבים לכל הלוואה. פרטי הערב הראשון, בפירוט מלא כמו הלווה.</p>
+            <div class="field-grid" style="padding:0">
+              <div class="field" style="position:relative">
+                <label>שם מלא</label>
+                <input type="text" id="guarantor1-input" placeholder="הקלידו שם..." autocomplete="off" data-suggest="suggestions-g1" oninput="filterNames(this)" onblur="hideSuggestLater(this)">
+                <div class="suggest-box" id="suggestions-g1"></div>
+              </div>
+              <div class="field"><label>תעודת זהות</label><input type="text" id="guarantor1-idnum" placeholder="000000000"></div>
+              <div class="field"><label>טלפון נייד</label><input type="text" id="guarantor1-phone" placeholder="050-0000000"></div>
+              <div class="field" style="grid-column:1/-1"><label>כתובת מגורים</label><input type="text" id="guarantor1-address" placeholder="רחוב, מספר, עיר"></div>
+            </div>
+          </div>
+
+          <div class="wizard-panel" data-panel="3">
+            <p class="hint" style="margin-top:0">פרטי הערב השני, בפירוט מלא.</p>
+            <div class="field-grid" style="padding:0">
+              <div class="field" style="position:relative">
+                <label>שם מלא</label>
+                <input type="text" id="guarantor2-input" placeholder="הקלידו שם..." autocomplete="off" data-suggest="suggestions-g2" oninput="filterNames(this)" onblur="hideSuggestLater(this)">
+                <div class="suggest-box" id="suggestions-g2"></div>
+              </div>
+              <div class="field"><label>תעודת זהות</label><input type="text" id="guarantor2-idnum" placeholder="000000000"></div>
+              <div class="field"><label>טלפון נייד</label><input type="text" id="guarantor2-phone" placeholder="050-0000000"></div>
+              <div class="field" style="grid-column:1/-1"><label>כתובת מגורים</label><input type="text" id="guarantor2-address" placeholder="רחוב, מספר, עיר"></div>
+            </div>
+          </div>
+
+          <div class="wizard-panel" data-panel="4">
+            <div class="field-grid" style="padding:0">
+              <div class="field"><label>סכום ההלוואה</label><input type="text" placeholder="₪ 0"></div>
+              <div class="field"><label>מטרת ההלוואה</label><input type="text" placeholder="לדוגמה: הוצאות רפואיות"></div>
+              <div class="field"><label>תאריך מתן ההלוואה</label><input type="text" placeholder="dd/mm/yyyy"></div>
+              <div class="field"><label>מועד להחזרה</label><input type="text" placeholder="dd/mm/yyyy"></div>
+            </div>
+            <div class="form-section-title">תזכורות אוטומטיות</div>
+            <div class="checkbox-row"><input type="checkbox" id="ch1" checked><label for="ch1">שליחת תזכורת באימייל</label></div>
+            <div class="checkbox-row"><input type="checkbox" id="ch2" checked><label for="ch2">שליחת תזכורת בוואטסאפ</label></div>
+            <div class="checkbox-row"><input type="checkbox" id="ch3"><label for="ch3">שליחת תזכורת ב-SMS</label></div>
+          </div>
+
+          
+
+          <div class="form-actions">
+            <button class="btn btn-ghost" id="wiz-loan-prev" onclick="wizardPrev('wiz-loan')" style="visibility:hidden">→ הקודם</button>
+            <button class="btn btn-primary" id="wiz-loan-next" onclick="wizardNext('wiz-loan')">הבא ←</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ REPAYMENT CALENDAR / LOG ============ -->
+      <section class="view" id="view-calendar">
+        <div class="calendar-page-top">
+          <div class="calendar-page-title"><span class="calendar-kicker">תכנון ומעקב</span><h2>יומן החזרים</h2></div>
+          <div class="calendar-page-actions"><span class="calendar-current-date" id="calendar-current-date"></span><button type="button" class="calendar-today-btn" onclick="calendarGoToday()">היום</button></div>
+        </div>
+        <div class="calendar-layout">
+          <div class="calendar-card">
+            <div class="calendar-card-head">
+              <div><div class="calendar-month" id="calendar-month-title"></div><div class="calendar-month-sub" id="calendar-month-sub"></div></div>
+              <div class="calendar-month-nav" aria-label="ניווט בין תקופות של שבועיים">
+                <button type="button" onclick="calendarChangePeriod(-1)" aria-label="שבועיים קודמים" title="שבועיים קודמים">→</button>
+                <button type="button" onclick="calendarChangePeriod(1)" aria-label="שבועיים הבאים" title="שבועיים הבאים">←</button>
+              </div>
+            </div>
+            <div class="calendar-weekdays" aria-hidden="true"><span data-short="א׳">יום ראשון</span><span data-short="ב׳">יום שני</span><span data-short="ג׳">יום שלישי</span><span data-short="ד׳">יום רביעי</span><span data-short="ה׳">יום חמישי</span><span data-short="ו׳">יום שישי</span><span data-short="ש׳">שבת</span></div>
+            <div class="calendar-grid" id="calendar-grid" role="group" aria-label="יומן החזרים לשבוע הנוכחי ולשבוע הבא"></div>
+            <div class="calendar-legend"><span><i class="calendar-legend-dot calendar-dot-due"></i>החזר מתקרב</span><span><i class="calendar-legend-dot calendar-dot-overdue"></i>החזר באיחור</span><span><i class="calendar-legend-dot calendar-dot-deposit"></i>החזרת הפקדה</span><span class="calendar-legend-note" id="calendar-selection-note"></span></div>
+          </div>
+          <aside class="calendar-upcoming" aria-label="החזרים קרובים">
+            <div class="calendar-upcoming-head"><span class="calendar-upcoming-eyebrow">במבט אחד</span><h3>החזרים קרובים</h3><p>המועדים הקרובים לתשלום</p></div>
+            <div class="calendar-upcoming-list" id="calendar-upcoming-list"></div>
+            <div class="calendar-selected" id="calendar-selected" hidden></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ ARCHIVE ============ -->
+      <section class="view" id="view-archive">
+        <div class="archive-feature">
+          <div class="archive-feature-copy"><span class="feature-kicker">רשומות שהוסרו</span><h2>ארכיון</h2><p>שחזור רשומות שנשמרו בארכיון.</p><strong class="archive-total">2 רשומות</strong></div>
+          <div class="archive-feature-art"><img src="assets/community-archive.png" alt=""></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>סוג</th><th>שם / מספר</th><th>הוסר בתאריך</th><th>הוסר על ידי</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><span class="badge badge-active">איש קשר</span></td><td><div class="archive-row-name">יוסף שטרן</div><div class="archive-meta">נרשם בטעות פעמיים</div></td><td class="cell-muted">02.05.2026</td><td class="cell-muted">הרב לרנר</td><td><button class="btn btn-ghost btn-sm">שחזור</button></td></tr>
+              <tr><td><span class="badge badge-active">הלוואה</span></td><td><div class="archive-row-name">#1017 · רבקה שמעוני</div><div class="archive-meta">בוטלה לבקשת הלווה לפני אישור סופי</div></td><td class="cell-muted">18.04.2026</td><td class="cell-muted">הרב לרנר</td><td><button class="btn btn-ghost btn-sm">שחזור</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pager"><span class="cell-muted">מציג 1–2 מתוך 2</span><div class="pager-btns"><button class="btn btn-ghost btn-sm" disabled>→ הקודם</button><button class="btn btn-ghost btn-sm" disabled>הבא ←</button></div></div>
+      </section>
+
+      <!-- ============ SETTINGS ============ -->
+      <section class="view" id="view-settings">
+        <div class="settings-heading"><div><span class="feature-kicker">התאמה אישית</span><h2>הגדרות</h2></div><button class="btn btn-primary" id="settings-save" type="button">שמירת שינויים</button></div>
+        <div class="cols-2b">
+          <div class="form-card">
+            <div class="form-section-title">פרטים אישיים</div>
+            <div class="field"><label for="settings-name">שם מוצג</label><input id="settings-name" type="text" value="הרב לרנר"></div>
+            <div class="field" style="margin-bottom:0"><label for="settings-phone">טלפון ליצירת קשר</label><input id="settings-phone" type="tel" value="050-0000000"></div>
+          </div>
+          <div class="form-card">
+            <div class="form-section-title">ערוצי קשר מועדפים</div>
+            <div class="checkbox-row"><input type="checkbox" id="s1" checked><label for="s1">אימייל</label></div>
+            <div class="checkbox-row"><input type="checkbox" id="s2" checked><label for="s2">וואטסאפ</label></div>
+            <div class="checkbox-row"><input type="checkbox" id="s3"><label for="s3">SMS</label></div>
+          </div>
+        </div>
+      </section>
+
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  var peopleDB = {
+    'יעקב כהן': {idnum:'123456782', phone:'050-1234567', address:"רח' הרב קוק 14, בני ברק"},
+    'דוד ישראלי': {idnum:'234567891', phone:'054-3456789', address:"רח' העצמאות 8, אלעד"},
+    'שרה מזרחי': {idnum:'345678912', phone:'050-9876543', address:"רח' הנביאים 3, ירושלים"},
+    'חנה גולדברג': {idnum:'456789123', phone:'053-6547890', address:"רח' הזית 22, פתח תקווה"},
+    'משה לוי': {idnum:'223344556', phone:'052-2345678', address:"רח' הגר\"א 5, בני ברק"},
+    'רחל אברהם': {idnum:'334455667', phone:'058-1112223', address:"רח' מלכי ישראל 9, בני ברק"},
+    'יוסף שטרן': {idnum:'445566778', phone:'057-3334445', address:"רח' עזרא 11, ביתר עילית"},
+    'אברהם וייס': {idnum:'556677889', phone:'050-2223334', address:"רח' רשב\"י 6, ביתר עילית"}
+  };
+  var existingPeople = Object.keys(peopleDB);
+  var wizardState = {};
+
+  function showView(id){
+    document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('active'); });
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.nav-btn, .tlink').forEach(function(b){ b.classList.remove('active'); });
+    document.querySelectorAll('[data-target="'+id+'"]').forEach(function(b){ b.classList.add('active'); });
+    document.querySelector('.content').scrollTo(0,0);
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+  function switchTab(prefix, panelId, btn){
+    var tabsWrap = btn.parentElement;
+    tabsWrap.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.tab-panel').forEach(function(p){
+      if(p.id.indexOf(prefix+'-') === 0){ p.classList.toggle('active', p.id === panelId); }
+    });
+  }
+
+  function wizardShow(wizId, step){
+    var scope = wizId === 'wiz-loan' ? document.getElementById('view-loan-new') : document.getElementById('view-person-new');
+    var panels = scope.querySelectorAll('.wizard-panel');
+    var total = panels.length;
+    panels.forEach(function(p){ p.classList.toggle('active', +p.dataset.panel === step); });
+    scope.querySelectorAll('.wstep').forEach(function(s){ s.classList.toggle('active', +s.dataset.step <= step); });
+    wizardState[wizId] = step;
+    var prevBtn = document.getElementById(wizId+'-prev');
+    var nextBtn = document.getElementById(wizId+'-next');
+    prevBtn.style.visibility = step === 1 ? 'hidden' : 'visible';
+    if(step === total){
+      nextBtn.textContent = wizId === 'wiz-loan' ? 'שמירת ההלוואה' : 'שמירת איש הקשר';
+      nextBtn.onclick = function(){};
+    } else {
+      nextBtn.textContent = 'הבא ←';
+      nextBtn.onclick = function(){ wizardNext(wizId); };
+    }
+  }
+  function wizardNext(wizId){ wizardShow(wizId, (wizardState[wizId]||1) + 1); }
+  function wizardPrev(wizId){ wizardShow(wizId, (wizardState[wizId]||1) - 1); }
+  function openLoanWizard(){ showView('view-loan-new'); wizardShow('wiz-loan', 1); }
+  function openPersonWizard(){ showView('view-person-new'); wizardShow('wiz-person', 1); }
+
+  function filterNames(input){
+    var box = document.getElementById(input.dataset.suggest);
+    var q = input.value.trim();
+    if(!q){ box.classList.remove('show'); box.innerHTML=''; return; }
+    var matches = existingPeople.filter(function(n){ return n.indexOf(q) !== -1; });
+    if(matches.length === 0){
+      box.innerHTML = '<div class="suggest-hint">לא נמצא איש קשר קיים — ייווצר איש קשר חדש בשם שהוקלד</div>';
+      box.classList.add('show');
+      return;
+    }
+    box.innerHTML = matches.map(function(n){
+      return '<button type="button" onmousedown="pickName(\''+input.id+'\',\''+box.id+'\',\''+n+'\')">'+n+'<span class="tag">איש קשר קיים — פרטים יתמלאו אוטומטית</span></button>';
+    }).join('') + '<div class="suggest-hint">לא מוצאים? ימשיך להיווצר איש קשר חדש בשם שהקלדתם</div>';
+    box.classList.add('show');
+  }
+  function pickName(inputId, boxId, name){
+    document.getElementById(inputId).value = name;
+    var box = document.getElementById(boxId);
+    box.classList.remove('show'); box.innerHTML='';
+    var role = inputId.replace('-input','');
+    var info = peopleDB[name];
+    if(info){
+      ['idnum','phone','address'].forEach(function(f){
+        var el = document.getElementById(role+'-'+f);
+        if(el) el.value = info[f];
+      });
+    }
+  }
+  function hideSuggestLater(input){
+    setTimeout(function(){ var box=document.getElementById(input.dataset.suggest); if(box){box.classList.remove('show');} }, 180);
+  }
+
+  var calendarEntries = [
+    {date:'2026-08-24', loan:'1041', name:'דוד ישראלי', amount:7000},
+    {date:'2026-10-04', loan:'1042', name:'יעקב כהן', amount:5000},
+    {date:'2026-10-14', loan:'1038', name:'חנה גולדברג', amount:10000},
+    {date:'2026-12-10', loan:'1040', name:'שרה מזרחי', amount:3000}
+  ];
+  var calendarSeedEntries = calendarEntries.slice();
+  var calendarSavedEntries = [];
+  var calendarDepositEntries = [];
+  var calendarToday = new Date();
+  calendarToday.setHours(0,0,0,0);
+  function calendarStartOfWeek(date){
+    return new Date(date.getFullYear(),date.getMonth(),date.getDate()-date.getDay());
+  }
+  var calendarPeriodStart = calendarStartOfWeek(calendarToday);
+  var calendarSelectedDate = '';
+
+  function calendarParseDate(key){
+    var bits = key.split('-').map(Number);
+    return new Date(bits[0],bits[1]-1,bits[2]);
+  }
+  function calendarDateKey(date){
+    return date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');
+  }
+  function calendarDaysUntil(key){
+    var day = calendarParseDate(key);
+    return Math.round((Date.UTC(day.getFullYear(),day.getMonth(),day.getDate())-Date.UTC(calendarToday.getFullYear(),calendarToday.getMonth(),calendarToday.getDate()))/86400000);
+  }
+  function calendarMoney(amount){ return amount.toLocaleString('he-IL')+' ₪'; }
+  function calendarEscapeHtml(value){
+    return String(value).replace(/[&<>"']/g,function(character){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character];
+    });
+  }
+  var calendarHebrewFormatter = new Intl.DateTimeFormat('he-IL-u-ca-hebrew',{day:'numeric',month:'long',year:'numeric'});
+  function calendarHebrewParts(date){
+    var parts = calendarHebrewFormatter.formatToParts(date);
+    return {
+      day:Number(parts.find(function(part){return part.type === 'day';}).value),
+      month:parts.find(function(part){return part.type === 'month';}).value,
+      year:parts.find(function(part){return part.type === 'year';}).value
+    };
+  }
+  function calendarHebrewNumber(day){
+    var ones = ['','א','ב','ג','ד','ה','ו','ז','ח','ט'];
+    if(day === 15) return 'ט״ו';
+    if(day === 16) return 'ט״ז';
+    if(day < 10) return ones[day]+'׳';
+    if(day === 10) return 'י׳';
+    if(day < 20) return 'י״'+ones[day-10];
+    if(day === 20) return 'כ׳';
+    if(day < 30) return 'כ״'+ones[day-20];
+    return 'ל׳';
+  }
+  function calendarHanukkahDay(date){
+    for(var i=0;i<8;i++){
+      var previous = new Date(date.getFullYear(),date.getMonth(),date.getDate()-i);
+      var parts = calendarHebrewParts(previous);
+      if(parts.month === 'כסלו' && parts.day === 25) return i+1;
+    }
+    return 0;
+  }
+  function calendarHoliday(date,hebrew){
+    var month = hebrew.month, day = hebrew.day;
+    if(month === 'תשרי'){
+      if(day <= 2) return 'ראש השנה';
+      if(day === 10) return 'יום הכיפורים';
+      if(day === 15) return 'סוכות';
+      if(day >= 16 && day <= 20) return 'חול המועד סוכות';
+      if(day === 21) return 'הושענא רבה';
+      if(day === 22) return 'שמיני עצרת ושמחת תורה';
+    }
+    var hanukkah = (month === 'כסלו' || month === 'טבת') ? calendarHanukkahDay(date) : 0;
+    if(hanukkah) return 'חנוכה · נר '+hanukkah;
+    if(month === 'שבט' && day === 15) return 'ט״ו בשבט';
+    if((month === 'אדר' || month.indexOf('אדר ב') === 0) && day === 14) return 'פורים';
+    if((month === 'אדר' || month.indexOf('אדר ב') === 0) && day === 15) return 'שושן פורים';
+    if(month === 'ניסן'){
+      if(day === 15) return 'פסח';
+      if(day >= 16 && day <= 20) return 'חול המועד פסח';
+      if(day === 21) return 'שביעי של פסח';
+    }
+    if(month === 'אייר' && day === 18) return 'ל״ג בעומר';
+    if(month === 'סיוון' && day === 6) return 'שבועות';
+    return '';
+  }
+  function calendarRelativeDay(days){
+    if(days === 0) return 'היום';
+    if(days === 1) return 'מחר';
+    if(days === 2) return 'בעוד יומיים';
+    if(days > 0) return 'בעוד '+days+' ימים';
+    if(days === -1) return 'באיחור יום';
+    return 'באיחור '+Math.abs(days)+' ימים';
+  }
+  function calendarEntryMarkup(entry){
+    var days = calendarDaysUntil(entry.date);
+    var date = calendarParseDate(entry.date);
+    var kind = days < 0 ? 'is-overdue' : '';
+    var shortMonth = new Intl.DateTimeFormat('he-IL',{month:'short'}).format(date);
+    var selected = entry.date === calendarSelectedDate ? ' is-selected' : '';
+    var isDeposit = entry.kind === 'deposit';
+    var itemType = isDeposit ? 'החזרת הפקדה' : 'הלוואה';
+    var itemId = isDeposit ? entry.id : entry.loan;
+    return '<button type="button" class="calendar-upcoming-item'+selected+(isDeposit?' is-deposit':'')+'" onclick="calendarJumpTo(\''+entry.date+'\')" aria-label="'+itemType+' ל'+calendarEscapeHtml(entry.name)+', '+calendarMoney(entry.amount)+', '+calendarRelativeDay(days)+'">'+
+      '<span class="calendar-upcoming-date '+kind+(isDeposit?' is-deposit':'')+'"><b>'+date.getDate()+'</b><small>'+shortMonth+'</small></span>'+
+      '<span class="calendar-upcoming-info"><span class="calendar-upcoming-name">'+calendarEscapeHtml(entry.name)+'</span><span class="calendar-upcoming-meta">'+itemType+' #'+calendarEscapeHtml(itemId)+' · '+calendarRelativeDay(days)+'</span><span class="calendar-upcoming-amount">'+calendarMoney(entry.amount)+'</span></span></button>';
+  }
+  function calendarRenderUpcoming(){
+    var upcoming = calendarEntries.filter(function(entry){return calendarDaysUntil(entry.date) >= 0;});
+    var overdue = calendarEntries.filter(function(entry){return calendarDaysUntil(entry.date) < 0;}).reverse();
+    var html = upcoming.length ? upcoming.map(calendarEntryMarkup).join('') : '<p class="calendar-upcoming-empty">אין החזרים קרובים</p>';
+    if(overdue.length) html += '<div class="calendar-upcoming-overdue">מועדים שעברו</div>'+overdue.map(calendarEntryMarkup).join('');
+    document.getElementById('calendar-upcoming-list').innerHTML = html;
+  }
+  function calendarRenderSelection(){
+    var box = document.getElementById('calendar-selected');
+    var note = document.getElementById('calendar-selection-note');
+    if(!calendarSelectedDate){ box.hidden = true; note.textContent = ''; return; }
+    var date = calendarParseDate(calendarSelectedDate);
+    var hebrew = calendarHebrewParts(date);
+    var holiday = calendarHoliday(date,hebrew);
+    var entries = calendarEntries.filter(function(entry){ return entry.date === calendarSelectedDate; });
+    var label = new Intl.DateTimeFormat('he-IL',{weekday:'long',day:'numeric',month:'long'}).format(date)+' · '+calendarHebrewNumber(hebrew.day)+' '+hebrew.month;
+    note.textContent = label;
+    box.innerHTML = '<h4>'+label+'</h4><p>'+(holiday ? holiday+'<br>' : '')+(entries.length ? entries.map(function(entry){return (entry.kind === 'deposit' ? 'החזרת הפקדה ל' : 'החזר מ')+calendarEscapeHtml(entry.name)+' · '+calendarMoney(entry.amount)+' · '+(entry.kind === 'deposit' ? 'הפקדה #' + calendarEscapeHtml(entry.id) : 'הלוואה #' + calendarEscapeHtml(entry.loan));}).join('<br>') : 'אין החזרים ביום זה')+'</p>';
+    box.hidden = false;
+  }
+  function calendarRenderDay(date){
+    var key = calendarDateKey(date);
+    var hebrew = calendarHebrewParts(date);
+    var holiday = calendarHoliday(date,hebrew);
+    var entries = calendarEntries.filter(function(entry){return entry.date === key;});
+    var classes = 'calendar-day'+(date < calendarToday?' is-past':'')+(date.getDay() === 6?' is-weekend':'')+(key === calendarDateKey(calendarToday)?' is-today':'')+(key === calendarSelectedDate?' is-selected':'');
+    var label = new Intl.DateTimeFormat('he-IL',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(date)+', '+calendarHebrewNumber(hebrew.day)+' '+hebrew.month+' '+hebrew.year;
+    if(holiday) label += ', '+holiday;
+    if(entries.length) label += ', '+entries.map(function(entry){return (entry.kind === 'deposit' ? 'החזרת הפקדה ל' : 'החזר של ')+entry.name+' '+calendarMoney(entry.amount);}).join(', ');
+    var events = entries.map(function(entry){
+      var state = calendarDaysUntil(entry.date) < 0 ? 'is-overdue' : 'is-future';
+      return '<span class="calendar-day-event '+state+(entry.kind === 'deposit' ? ' is-deposit' : '')+'">'+(entry.kind === 'deposit' ? 'הפקדה · ' : '')+calendarEscapeHtml(entry.name)+' · '+calendarMoney(entry.amount)+'</span>';
+    }).join('');
+    var weekday = new Intl.DateTimeFormat('he-IL',{weekday:'long'}).format(date);
+    var monthShort = new Intl.DateTimeFormat('he-IL',{month:'short'}).format(date);
+    return '<button type="button" class="'+classes+'" data-date="'+key+'" onclick="calendarSelectDate(this.dataset.date)" aria-label="'+calendarEscapeHtml(label)+'"'+(key === calendarDateKey(calendarToday)?' aria-current="date"':'')+'><span class="calendar-day-date"><span class="calendar-weekday-name">'+weekday+'</span><span class="calendar-gregorian"><span class="calendar-day-number">'+date.getDate()+'</span><span class="calendar-month-mobile">'+monthShort+'</span></span><span class="calendar-hebrew-date">'+calendarHebrewNumber(hebrew.day)+'<span class="calendar-hebrew-month"> '+hebrew.month+'</span></span></span>'+(holiday ? '<span class="calendar-holiday" title="'+holiday+'">✦ '+holiday+'</span>' : '')+(events || '<span class="calendar-day-empty">אין החזרים</span>')+'</button>';
+  }
+  function calendarRenderPeriod(){
+    var first = calendarPeriodStart;
+    var last = new Date(first.getFullYear(),first.getMonth(),first.getDate()+13);
+    var firstHebrew = calendarHebrewParts(first);
+    var lastHebrew = calendarHebrewParts(last);
+    var count = calendarEntries.filter(function(entry){return entry.date >= calendarDateKey(first) && entry.date <= calendarDateKey(last);}).length;
+    var firstLabel = new Intl.DateTimeFormat('he-IL',{day:'numeric',month:'long'}).format(first);
+    var lastLabel = new Intl.DateTimeFormat('he-IL',{day:'numeric',month:'long',year:'numeric'}).format(last);
+    document.getElementById('calendar-month-title').textContent = firstLabel+' – '+lastLabel;
+    var hebrewRange = calendarHebrewNumber(firstHebrew.day)+' '+firstHebrew.month+' – '+calendarHebrewNumber(lastHebrew.day)+' '+lastHebrew.month+' '+lastHebrew.year;
+    document.getElementById('calendar-month-sub').textContent = hebrewRange+' · '+(count ? (count === 1 ? 'החזר אחד' : count+' החזרים') : 'אין החזרים בשבועיים אלה');
+    document.getElementById('calendar-current-date').textContent = new Intl.DateTimeFormat('he-IL',{weekday:'long',day:'numeric',month:'long'}).format(calendarToday);
+    var days = [];
+    for(var i=0;i<14;i++) days.push(calendarRenderDay(new Date(first.getFullYear(),first.getMonth(),first.getDate()+i)));
+    document.getElementById('calendar-grid').innerHTML = days.join('');
+    calendarRenderUpcoming();
+    calendarRenderSelection();
+  }
+  function calendarStoredDueDate(value){
+    var text = String(value || '').trim();
+    var iso = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+    var local = text.match(/^(\d{1,2})[./](\d{1,2})[./](\d{4})$/);
+    var year = iso ? +iso[1] : local ? +local[3] : 0;
+    var month = iso ? +iso[2] : local ? +local[2] : 0;
+    var day = iso ? +iso[3] : local ? +local[1] : 0;
+    var date = new Date(year,month-1,day);
+    return year && date.getFullYear() === year && date.getMonth() === month-1 && date.getDate() === day ? calendarDateKey(date) : '';
+  }
+  function calendarRebuildEntries(){
+    calendarEntries = (calendarUseSeedEntries ? calendarSeedEntries : []).concat(calendarSavedEntries,calendarDepositEntries).sort(function(a,b){return a.date.localeCompare(b.date);});
+    calendarRenderPeriod();
+  }
+  function calendarRefreshSavedLoans(loans){
+    var stored = Array.isArray(loans) ? loans : [];
+    var saved = stored.map(function(loan){
+      var date = calendarStoredDueDate(loan && loan.due);
+      var balance = Number(loan && loan.balance);
+      if(!date || !Number.isFinite(balance) || balance <= 0) return null;
+      return {date:date,loan:String(loan.number || ''),name:String(loan.borrower || 'לווה'),amount:balance};
+    }).filter(Boolean);
+    calendarSavedEntries = saved;
+    calendarRebuildEntries();
+  }
+  function calendarRefreshDeposits(deposits){
+    calendarDepositEntries = (Array.isArray(deposits) ? deposits : []).map(function(deposit){
+      var date = calendarStoredDueDate(deposit && deposit.date);
+      var remaining = Number(deposit && deposit.remaining);
+      if(!date || !Number.isFinite(remaining) || remaining <= 0) return null;
+      return {date:date,id:String(deposit.id || ''),name:String(deposit.name || 'מפקיד'),amount:remaining,kind:'deposit'};
+    }).filter(Boolean);
+    calendarRebuildEntries();
+  }
+  function calendarChangePeriod(offset){
+    calendarPeriodStart = new Date(calendarPeriodStart.getFullYear(),calendarPeriodStart.getMonth(),calendarPeriodStart.getDate()+offset*14);
+    calendarSelectedDate = '';
+    calendarRenderPeriod();
+  }
+  function calendarGoToday(){
+    calendarPeriodStart = calendarStartOfWeek(calendarToday);
+    calendarSelectedDate = calendarDateKey(calendarToday);
+    calendarRenderPeriod();
+  }
+  function calendarSelectDate(key){
+    var day = calendarParseDate(key);
+    calendarPeriodStart = calendarStartOfWeek(day);
+    calendarSelectedDate = key;
+    calendarRenderPeriod();
+  }
+  function calendarJumpTo(key){ calendarSelectDate(key); }
+  var calendarStoredLoans = [];
+  var calendarUseSeedEntries = true;
+  try {
+    var calendarSavedData = JSON.parse(localStorage.getItem('gemach-community-local-v1') || '{}');
+    calendarStoredLoans = calendarSavedData.loans || [];
+  } catch(error) {}
+  calendarRefreshSavedLoans(calendarStoredLoans);
+  window.addEventListener('gemach:local-data-changed',function(event){
+    calendarRefreshSavedLoans(event.detail && event.detail.loans);
+  });
+  window.addEventListener('gemach:loan-register-updated',function(event){
+    calendarUseSeedEntries = false;
+    calendarRefreshSavedLoans(event.detail && event.detail.loans);
+  });
+  window.addEventListener('gemach:deposits-changed',function(event){
+    calendarRefreshDeposits(event.detail && event.detail.deposits);
+  });
+  window.addEventListener('load',function(){
+    if(window.gemachDeposits && typeof window.gemachDeposits.list === 'function') calendarRefreshDeposits(window.gemachDeposits.list());
+  });
+</script>
+<script src="assets/app-functionality.js"></script>
+<script src="assets/loan-workspace.js"></script>
+<script src="assets/deposits.js"></script>
+</body>
+</html>
