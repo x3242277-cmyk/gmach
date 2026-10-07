@@ -1,0 +1,172 @@
+/* The deposits ledger is a liability register: its scroll stays inside the page. */
+#view-deposits,#view-deposit-form,#view-deposit-detail{min-width:0}
+.deposits-heading{flex:none;min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:8px 13px;border:1px solid #e9e2d7;border-radius:16px;background:#fffefa}
+.deposits-heading-main{display:flex;align-items:center;gap:11px;min-width:0}
+.deposits-heading-icon{flex:none;width:48px;height:48px;display:grid;place-items:center;border-radius:12px;color:#b27d35;background:#f4e9d4}
+.deposits-heading-icon svg{width:27px;height:27px}
+.deposits-heading h2,.deposits-subhead h2{font:800 clamp(22px,2.4vw,30px)/1.16 Heebo,Assistant,sans-serif;letter-spacing:-.045em;color:#173d4d;margin:0}
+.deposits-heading-main span:last-child{display:block;color:#71827b;font-size:12px;font-weight:700}
+.deposits-stats{display:flex;align-items:center;justify-content:center;min-width:0}
+.deposits-stats>span{display:flex;align-items:baseline;gap:8px;padding:5px 18px;border-inline-start:1px solid #e9e2d7;white-space:nowrap}
+.deposits-stats small{color:#71827b;font-size:12px;font-weight:700}
+.deposits-stats strong{color:#173d4d;font-size:18px;font-weight:800}
+.deposits-heading>.btn{min-height:36px;font-size:13px;padding-inline:16px;white-space:nowrap}
+.deposits-toolbar{flex:none;display:flex;align-items:center;gap:10px;min-width:0}
+.deposits-filters{display:flex;align-items:center;gap:3px;flex:none;padding:4px;background:#e9e7e1;border-radius:13px}
+.deposits-filters button{border:0;background:transparent;border-radius:10px;padding:8px 13px;color:#59716e;font:700 12px Heebo,Assistant,sans-serif;white-space:nowrap;cursor:pointer}
+.deposits-filters button.active{background:#fffefa;color:#173d4d;box-shadow:0 2px 6px rgba(20,45,44,.08)}
+.deposits-filters button:hover:not(.active){background:rgba(255,255,255,.52)}
+.deposits-search{flex:1;min-width:180px;min-height:40px;display:flex;align-items:center;gap:8px;padding:0 12px;border:1px solid #dfdfd5;border-radius:12px;background:#fffefa;color:#58706b}
+.deposits-search:focus-within{border-color:#bf914e;box-shadow:0 0 0 3px rgba(191,145,78,.12)}
+.deposits-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#173d4d;font:400 13px Heebo,Assistant,sans-serif}
+.deposits-list-wrap{flex:1;min-height:0;overflow:auto;scrollbar-width:thin;background:#fffefa;border:1px solid #e9e2d7;border-radius:16px;box-shadow:0 8px 22px rgba(20,49,50,.04)}
+.deposits-table{width:100%;min-width:870px;border-collapse:collapse;text-align:right}
+.deposits-table th{position:sticky;top:0;z-index:2;background:#f6f3ed;color:#6c8079;font-size:12px;padding:10px 13px;white-space:nowrap}
+.deposits-table td{padding:10px 13px;border-top:1px solid #eee9e1;color:#264450;font-size:13px;white-space:nowrap}
+.deposits-table tbody tr:hover{background:#fbf8f0}
+.deposits-table .depositor-name{font-weight:800;color:#153d4d}
+.deposits-table .deposit-row-action{text-align:left}
+.deposits-table .btn{min-height:31px;padding-inline:12px;font-size:12px}
+.deposit-status{display:inline-flex;align-items:center;justify-content:center;gap:5px;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800;white-space:nowrap}
+.deposit-status::before{content:"";display:block;width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.75}
+.deposit-status.is-active{background:#e7efea;color:#38766a}
+.deposit-status.is-soon{background:#faefd9;color:#a77327}
+.deposit-status.is-overdue{background:#fae5df;color:#b9503f}
+.deposit-status.is-undated{background:#e8edf0;color:#557786}
+.deposit-status.is-returned{background:#e7f2ee;color:#568d7c}
+.deposits-empty{min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#778a83;text-align:center}
+.deposits-empty[hidden]{display:none!important}
+.deposits-empty strong{color:#173d4d;font-size:17px}
+.deposits-empty span{font-size:13px}
+.deposits-foot{flex:none;color:#768880;font-size:12px;padding:0 2px}
+
+/* Create/edit and details share the same compact frame as the ledgers. */
+.deposits-subhead{flex:none;min-height:63px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:7px 14px;border:1px solid #e9e2d7;border-radius:16px;background:#fffefa}
+.deposits-back{border:0;background:transparent;color:#98703a;font:700 12px Heebo,Assistant,sans-serif;cursor:pointer;padding:0 0 2px}
+.deposits-back:hover{text-decoration:underline}
+.deposits-subhead h2{font-size:22px}
+.deposits-editor{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden;padding:19px 22px 13px;border:1px solid #e9e2d7;border-radius:17px;background:#fffefa}
+.deposits-form-grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:15px 19px;overflow:auto;padding:2px 2px 10px;scrollbar-width:thin}
+.deposits-form-grid label,.deposits-return-card label{display:flex;flex-direction:column;gap:6px;min-width:0;color:#173d4d;font-size:13px;font-weight:750}
+.deposits-form-grid label b{color:#ae644f}
+.deposits-form-grid input,.deposits-form-grid textarea,.deposits-return-card input{width:100%;min-height:43px;padding:8px 12px;border:1px solid #dcded6;border-radius:11px;background:#fff;color:#173d4d;font:400 14px Heebo,Assistant,sans-serif}
+.deposits-form-grid textarea{min-height:84px;resize:vertical}
+.deposits-form-grid input:focus,.deposits-form-grid textarea:focus,.deposits-return-card input:focus{outline:0;border-color:#be9050;box-shadow:0 0 0 3px rgba(190,144,80,.13)}
+.deposits-form-grid label small{color:#75867d;font-size:11px;font-weight:500}
+.deposits-notes{grid-column:1/-1}
+.deposits-error{flex:none;color:#ad483b;font-size:12px;font-weight:700;margin:5px 0}
+.deposits-error[hidden]{display:none!important}
+.deposits-form-actions{flex:none;display:flex;justify-content:flex-start;gap:9px;padding-top:10px;border-top:1px solid #eee9e1}
+.deposits-form-actions .btn{min-height:37px;font-size:13px}
+.deposits-detail-actions{display:flex;align-items:center;gap:9px}
+.deposits-detail-scroll{flex:1;min-height:0;overflow:auto;scrollbar-width:thin}
+.deposits-detail-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:11px}
+.deposits-detail-summary>div{display:flex;flex-direction:column;gap:3px;padding:13px 16px;border:1px solid #e8e2d8;border-radius:14px;background:#fffefa}
+.deposits-detail-summary small{color:#75867d;font-size:12px;font-weight:700}
+.deposits-detail-summary strong{color:#173d4d;font-size:21px;font-weight:800}
+.deposits-detail-columns{display:grid;grid-template-columns:1.35fr 1fr;gap:11px;align-items:start}
+.deposits-detail-card{padding:16px 18px;border:1px solid #e8e2d8;border-radius:16px;background:#fffefa}
+.deposits-detail-card h3{color:#173d4d;font-size:16px;margin:0 0 11px}
+.deposits-detail-card h3:not(:first-child){margin-top:20px}
+.deposits-detail-card dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 18px;margin:0}
+.deposits-detail-card dl>div{min-width:0;padding-bottom:8px;border-bottom:1px solid #f0ece5}
+.deposits-detail-card dt{color:#73857e;font-size:11px;font-weight:700}
+.deposits-detail-card dd{color:#173d4d;font-size:13px;font-weight:650;margin:2px 0 0;overflow-wrap:anywhere}
+.deposits-history-empty,.deposits-return-card>p{color:#71827b;font-size:12px;margin:0 0 11px}
+.deposits-history-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #f0ece5;color:#435d60;font-size:12px}
+.deposits-history-row strong{color:#173d4d;font-size:13px}
+.deposits-return-card form{display:flex;flex-direction:column;gap:12px}
+.deposits-return-card .btn{align-self:flex-start;min-height:36px;font-size:13px}
+.deposits-complete{display:inline-flex;padding:10px 13px;border-radius:10px;background:#e7f2ee;color:#38766a!important;font-weight:750}
+.deposits-complete[hidden],.deposits-return-card form[hidden]{display:none!important}
+
+@media(max-width:1100px){
+  .deposits-stats>span{padding-inline:9px;gap:4px}
+  .deposits-stats small{font-size:10px}
+  .deposits-stats strong{font-size:15px}
+}
+@media(max-width:800px){
+  .deposits-toolbar{flex-wrap:wrap;gap:7px}
+  .deposits-filters{width:100%;max-width:100%;overflow:auto;scrollbar-width:thin}
+  .deposits-filters button{flex:1;padding:7px 9px}
+  .deposits-search{min-width:0;width:100%}
+}
+@media(max-width:680px){
+  .deposits-view.active{gap:8px}
+  .deposits-heading{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 7px;padding:8px 10px}
+  .deposits-heading-icon{display:none}
+  .deposits-heading h2{font-size:20px}
+  .deposits-heading-main span:last-child{font-size:10px}
+  .deposits-heading>.btn{min-height:30px;font-size:11px;padding-inline:10px}
+  .deposits-stats{grid-column:1/-1;grid-row:2;justify-content:space-between;border-top:1px solid #eee9e1;width:100%}
+  .deposits-stats>span{padding:4px 1px;border:0;gap:3px}
+  .deposits-stats small{font-size:9px}
+  .deposits-stats strong{font-size:12px}
+  .deposits-filters button{font-size:10px;padding:6px 7px}
+  .deposits-search{min-height:33px}
+  .deposits-search input{font-size:12px}
+  .deposits-list-wrap{background:transparent;border:0;box-shadow:none}
+  .deposits-table{display:block;min-width:0;width:100%}
+  .deposits-table thead{display:none}
+  .deposits-table tbody{display:grid;gap:7px}
+  .deposits-table tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 8px;padding:10px 12px;border:1px solid #e8e2d8;border-radius:13px;background:#fffefa}
+  .deposits-table td{min-width:0;padding:0;border:0;font-size:12px;white-space:normal}
+  .deposits-table td::before{content:attr(data-label);display:block;color:#7a8981;font-size:10px;font-weight:700}
+  .deposits-table td:first-child{grid-column:1/-1;font-size:15px}
+  .deposits-table td:first-child::before{display:none}
+  .deposits-table td:nth-child(3){display:none}
+  .deposits-table td:nth-child(6){grid-column:1}
+  .deposits-table td:last-child{grid-column:2;align-self:end;justify-self:end}
+  .deposits-table td:last-child::before{display:none}
+  .deposit-status{font-size:10px;padding:4px 8px}
+  .deposits-foot{font-size:10px}
+  .deposits-subhead{min-height:54px;padding:6px 10px}
+  .deposits-subhead h2{font-size:18px}
+  .deposits-detail-head{align-items:center}
+  .deposits-detail-actions{gap:5px}
+  .deposits-detail-actions .btn{min-height:29px;padding-inline:9px;font-size:10px}
+  .deposits-detail-head .deposit-status{display:none}
+  .deposits-editor{padding:10px 12px 9px}
+  .deposits-form-grid{grid-template-columns:1fr;gap:10px}
+  .deposits-notes{grid-column:1}
+  .deposits-form-grid input,.deposits-form-grid textarea{min-height:36px;font-size:13px}
+  .deposits-form-actions .btn{min-height:32px;font-size:12px}
+  .deposits-detail-summary{gap:5px;margin-bottom:7px}
+  .deposits-detail-summary>div{padding:8px 7px}
+  .deposits-detail-summary small{font-size:10px}
+  .deposits-detail-summary strong{font-size:14px}
+  .deposits-detail-columns{grid-template-columns:1fr;gap:7px}
+  .deposits-detail-card{padding:11px 13px}
+  .deposits-detail-card h3{font-size:14px;margin-bottom:7px}
+  .deposits-detail-card dl{gap:6px 12px}
+}
+
+/* Deposit records use the same compact card rhythm as loans, with a warm tone. */
+#view-deposits .deposits-list-wrap{background:transparent;border:0;box-shadow:none}
+#view-deposits .deposits-table{display:block;width:100%;min-width:0;border-collapse:separate}
+#view-deposits .deposits-table thead{display:none}
+#view-deposits .deposits-table tbody{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-content:start;gap:10px;padding:2px}
+#view-deposits .deposits-table tr{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto auto;align-content:start;gap:5px 10px;min-width:0;min-height:157px;padding:13px 15px;background:#fffaf1;border:1px solid #eadfc9;border-radius:16px;box-shadow:0 5px 14px rgba(89,64,28,.045)}
+#view-deposits .deposits-table tr:hover{background:#fff5e4;border-color:#dbbd84}
+#view-deposits .deposits-table td{display:block;min-width:0;padding:0;border:0;line-height:1.25;text-align:right;white-space:normal;color:#574b3a}
+#view-deposits .deposits-table td::before{display:none}
+#view-deposits .deposits-table td:nth-child(1){grid-column:1/-1;grid-row:1;color:#493e2d;font-size:15px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#view-deposits .deposits-table td:nth-child(2){grid-column:1;grid-row:3;color:#806d50;font-size:11px}
+#view-deposits .deposits-table td:nth-child(3){grid-column:2;grid-row:3;color:#806d50;font-size:11px;text-align:left}
+#view-deposits .deposits-table td:nth-child(4){grid-column:2;grid-row:2;color:#493e2d;font-size:12px;font-weight:750;text-align:left}
+#view-deposits .deposits-table td:nth-child(5){grid-column:1;grid-row:2;color:#493e2d;font-size:17px;font-weight:800}
+#view-deposits .deposits-table td:nth-child(6){grid-column:1;grid-row:4;align-self:end}
+#view-deposits .deposits-table td:nth-child(7){grid-column:2;grid-row:4;align-self:end;text-align:left}
+#view-deposits .deposits-table td:nth-child(2)::before{content:'סכום הפקדה · ';display:inline;color:#a08b69;font-size:11px;font-weight:600}
+#view-deposits .deposits-table td:nth-child(3)::before{content:'הופקד · ';display:inline;color:#a08b69;font-size:11px;font-weight:600}
+#view-deposits .deposits-table td:nth-child(4)::before{content:'להחזרה עד';display:block;color:#a08b69;font-size:10px;font-weight:600}
+#view-deposits .deposits-table td:nth-child(5)::before{content:'יתרה למפקיד';display:block;color:#a08b69;font-size:10px;font-weight:600}
+#view-deposits .deposits-table .btn{min-height:29px;font-size:11px}
+#view-deposits .deposits-table .deposit-status.is-active{background:#f3e8d1;color:#8b672d}
+#view-deposits .deposits-table .deposit-status.is-undated{background:#f0ebdf;color:#776c58}
+#view-deposits .deposits-heading{background:#fffaf1;border-color:#eadfc9}
+#view-deposits .deposits-heading-icon{background:#f0dfbd;color:#9c6c28}
+#view-deposits .deposits-stats strong{color:#6d512b}
+@media(max-width:1480px){#view-deposits .deposits-table tbody{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:980px){#view-deposits .deposits-table tbody{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){#view-deposits .deposits-table tbody{grid-template-columns:1fr;gap:7px}#view-deposits .deposits-table tr{min-height:145px;padding:11px 13px}}

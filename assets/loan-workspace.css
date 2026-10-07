@@ -1,0 +1,70 @@
+.workspace-view{direction:rtl;color:#173d4d}
+.workspace-view.active{gap:10px}
+.workspace-header{flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px;padding:12px 18px;background:#fffefa;border:1px solid #e6e2d8;border-radius:17px}
+.workspace-heading,.workspace-actions{display:flex;align-items:center;gap:12px;min-width:0}
+.workspace-heading>div{min-width:0}
+.workspace-heading h2{margin:0;font:800 clamp(18px,2vw,25px)/1.15 Heebo,Assistant,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.workspace-kicker{display:block;color:#a47835;font-size:11px;font-weight:800;margin-bottom:3px}
+.workspace-back{border:0;border-left:1px solid #dcded7;padding:6px 0 6px 14px;background:transparent;color:#496c68;font:700 12px Assistant,sans-serif;white-space:nowrap;cursor:pointer}
+.workspace-actions .btn{white-space:nowrap;min-height:34px}
+.workspace-warning{background:#fae7de;color:#a74131;padding:6px 10px;border-radius:99px;font-size:11px;font-weight:800;white-space:nowrap}
+.workspace-state{background:#e3efeb;color:#2c7167;padding:6px 10px;border-radius:99px;font-size:11px;font-weight:800;white-space:nowrap}
+.workspace-scroll{flex:1;min-height:0;overflow:auto;scrollbar-width:thin;display:flex;flex-direction:column;gap:10px;padding:1px 2px 12px}
+.workspace-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;flex:none}
+.workspace-metric{min-width:0;padding:12px 16px;background:#eaf2ee;border:1px solid #dce9e1;border-radius:15px;display:flex;flex-direction:column;gap:2px}
+.workspace-metric span{font-size:11px;color:#5c7971;font-weight:800}
+.workspace-metric strong{font:800 clamp(17px,1.6vw,24px)/1.2 Heebo,Assistant,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.workspace-metric small{font-size:11px;color:#6a817a}
+.workspace-columns{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start;min-width:0}
+.workspace-stack{display:flex;flex-direction:column;gap:10px;min-width:0}
+.workspace-panel{min-width:0;padding:16px 18px;background:#fffefa;border:1px solid #e5e3d9;border-radius:16px}
+.workspace-panel-title{display:flex;align-items:baseline;justify-content:space-between;gap:8px;border-bottom:1px solid #eaece5;padding-bottom:10px;margin-bottom:12px}
+.workspace-panel h3{margin:0;font:800 16px Heebo,Assistant,sans-serif}
+.workspace-panel-title span{font-size:11px;color:#82928a}
+.workspace-facts{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+.workspace-fact{min-width:0;border-bottom:1px solid #f0f1ed;padding-bottom:7px}
+.workspace-fact span,.workspace-notes>span{display:block;color:#7b8b83;font-size:11px;font-weight:700;margin-bottom:3px}
+.workspace-fact strong{display:block;font-size:13px;font-weight:700;overflow-wrap:anywhere}
+.workspace-missing{font-weight:500;color:#a6b0a9}
+.workspace-notes{margin-top:12px;padding:11px 13px;background:#f6f7f2;border-radius:10px}
+.workspace-notes p{font-size:13px;margin:0;white-space:pre-wrap}
+.workspace-loan-list,.workspace-payments{display:flex;flex-direction:column;gap:6px}
+.workspace-loan-link{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:right;padding:10px 12px;background:#f5f8f4;border:1px solid #e3eae3;border-radius:11px;color:#173d4d;cursor:pointer}
+.workspace-loan-link:hover{background:#eaf3ed}
+.workspace-loan-link strong,.workspace-loan-link small{display:block}
+.workspace-loan-link strong{font-size:13px}
+.workspace-loan-link small{font-size:11px;color:#70827b}
+.workspace-loan-values{text-align:left;white-space:nowrap}
+.workspace-loan-values b{font-size:14px}
+.workspace-empty{font-size:12px;color:#809089;margin:6px 0}
+.workspace-loan-columns{grid-template-columns:1.05fr .95fr}
+.workspace-payment{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #eceee8}
+.workspace-payment>div{flex:1;min-width:0}
+.workspace-payment strong,.workspace-payment small{display:block}
+.workspace-payment strong{font-size:12px}
+.workspace-payment small{font-size:11px;color:#72847c}
+.workspace-payment b{font-size:13px;white-space:nowrap}
+.workspace-text-button{border:0;background:transparent;color:#16766c;font:800 11px Assistant,sans-serif;cursor:pointer}
+.workspace-shortcuts{display:flex;gap:6px;margin-bottom:11px}
+.workspace-chip{padding:6px 11px;border:1px solid #d9e1d9;border-radius:99px;background:#fff;color:#466861;font:700 11px Assistant,sans-serif;cursor:pointer}
+.workspace-chip.active{background:#173d4d;border-color:#173d4d;color:#fff}
+.workspace-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px}
+.workspace-form-grid label,.workspace-wide-field{display:flex;flex-direction:column;gap:4px;color:#667c74;font-size:11px;font-weight:800}
+.workspace-form-grid input,.workspace-form-grid select,.workspace-wide-field textarea{width:100%;min-width:0;padding:9px 10px;border:1px solid #d8e0d8;border-radius:9px;background:#fff;color:#173d4d;font:600 13px Assistant,sans-serif}
+.workspace-form-grid input:focus,.workspace-wide-field textarea:focus{outline:2px solid #a8cfc1}
+.workspace-wide-field{margin-top:9px}
+.workspace-form-help{font-size:11px;color:#76887e;line-height:1.4;margin:9px 0}
+.workspace-form-panel .btn{min-height:35px}
+.workspace-complete{padding:15px;background:#e8f4e9;color:#336f52;border-radius:11px;font-size:13px;font-weight:700}
+.workspace-mail-panel p{font-size:12px;line-height:1.5;color:#61776e;margin:7px 0}
+.workspace-mail-panel>div{font-size:12px}
+.workspace-overlay,.workspace-receipt{position:fixed;inset:0;z-index:120;display:grid;place-items:center;background:rgba(14,38,44,.56);padding:16px}
+.workspace-receipt[hidden]{display:none}
+.workspace-dialog,.workspace-receipt-card{width:min(650px,100%);max-height:min(88dvh,800px);overflow:auto;background:#fffefa;border-radius:19px;padding:19px 22px;box-shadow:0 20px 65px rgba(13,41,43,.22);direction:rtl}
+.workspace-dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;border-bottom:1px solid #e7e9e2;padding-bottom:10px;margin-bottom:12px}
+.workspace-dialog-head h3{font:800 19px Heebo,Assistant,sans-serif;margin:0}
+.workspace-dialog-head button{border:0;background:transparent;color:#617a72;font-size:25px;line-height:1;cursor:pointer}
+.workspace-dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+.workspace-receipt-card pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f8f4;border:1px solid #e6ede5;padding:15px;border-radius:12px;font:600 13px/1.7 Assistant,sans-serif;color:#173d4d}
+@media(max-width:850px){.workspace-columns,.workspace-loan-columns{grid-template-columns:1fr}.workspace-metric{padding:10px}.workspace-header{align-items:flex-start}.workspace-actions{align-self:center}}
+@media(max-width:620px){.workspace-header{display:block;padding:9px 11px}.workspace-heading{gap:7px}.workspace-heading h2{font-size:17px}.workspace-back{font-size:10px;padding-left:7px}.workspace-actions{justify-content:flex-end;margin-top:6px}.workspace-actions .btn{min-height:27px;font-size:10px;padding:5px 9px}.workspace-warning,.workspace-state{font-size:9px;padding:4px 6px}.workspace-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.workspace-metric{padding:7px 9px}.workspace-metric strong{font-size:16px}.workspace-panel{padding:11px 12px}.workspace-facts{gap:7px 10px}.workspace-form-grid{gap:7px}.workspace-dialog,.workspace-receipt-card{padding:13px}.workspace-dialog-actions .btn{font-size:12px}}

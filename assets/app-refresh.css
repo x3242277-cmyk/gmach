@@ -1,0 +1,285 @@
+/* The navigation and page frame stay fixed; long records scroll inside their panel. */
+html,body{height:100%;overflow:hidden}
+body{background:#f5f3ee}
+#screen-login{display:none!important}
+#app-shell.active{display:flex;height:100dvh;min-height:0;overflow:hidden;background:#f5f3ee}
+.topnav{flex:none;height:60px;margin:8px auto 0;top:0;width:calc(100% - 24px);border-radius:16px}
+.topnav .brand-sub{font-size:12px}
+.topnav-profile .tp-name{font-size:14px}
+.topnav-profile .tp-role{font-size:12px}
+.main-col{flex:1;min-height:0;overflow:hidden}
+.content{flex:1;min-height:0;overflow:hidden;width:min(1720px,100%);padding:11px 22px 16px;display:flex;flex-direction:column}
+.view.active{height:100%;min-height:0;display:flex;flex-direction:column;gap:13px;overflow:hidden}
+.view>*.table-wrap,.view>.tab-panel.active,.view>.form-card{min-height:0}
+.view>.table-wrap{flex:1;overflow:auto;scrollbar-width:thin}
+.view>.tab-panel.active{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.tab-panel.active>.toolbar{flex:none}
+.tab-panel.active>.table-wrap{flex:1;min-height:0;overflow:auto;scrollbar-width:thin}
+.view>.form-card{flex:1;overflow:auto;scrollbar-width:thin}
+.view-header{flex:none;margin:0;padding:16px 21px;border-radius:17px}
+.view-header h2{font-size:24px}
+.view-header .sub{font-size:14px;margin-top:2px}
+.view>.tabs{flex:none;align-self:flex-start;margin:0}
+.view>.toolbar{flex:none;margin:0}
+.view>.pager,.tab-panel>.pager{flex:none;margin:0;min-height:30px}
+.pager[hidden],.local-empty-row[hidden]{display:none!important}
+.pager .cell-muted{font-size:12px}
+th{font-size:12px;padding:11px 15px;position:sticky;top:0;z-index:1}
+td{font-size:14px;padding:12px 15px}
+.cell-muted{font-size:12px}
+.badge{font-size:12px}
+.toast{bottom:22px}
+.demo-ribbon{display:none!important}
+
+/* Overview: the first screen shows actions and live work, without repeated links or charts. */
+#view-dashboard{gap:13px}
+#view-dashboard .dash-hero{flex:none;min-height:178px;margin:0;border-radius:22px}
+#view-dashboard .dash-hero-copy{padding:24px 33px}
+#view-dashboard .dash-eyebrow{margin-bottom:6px;font-size:14px}
+#view-dashboard .dash-title{font-size:clamp(28px,2.6vw,36px);margin:0 0 4px}
+#view-dashboard .dash-sub{font-size:14px}
+#view-dashboard .dash-hero-actions{margin-top:16px}
+#view-dashboard .dash-hero-image{width:29%;min-height:178px}
+#view-dashboard .dash-hero-image:before{background:linear-gradient(to right,rgba(9,34,42,.14),transparent 50%)}
+#view-dashboard .quicklinks,#view-dashboard>.section-label,#view-dashboard>.cols-2b{display:none}
+#view-dashboard .stats-row{flex:none;gap:11px;margin:0}
+#view-dashboard .stat-card{min-height:95px;padding:15px 18px;border-radius:17px}
+#view-dashboard .stat-icon{width:39px;height:39px;border-radius:12px}
+#view-dashboard .stat-body .value{font-size:24px}
+#view-dashboard .stat-body .trend{font-size:11px}
+#view-dashboard .cols-2{flex:1;min-height:0;gap:11px;margin:0;grid-template-columns:1.35fr .85fr}
+#view-dashboard .cols-2>.panel{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+#view-dashboard .cols-2 .panel-head{flex:none;padding:13px 18px}
+#view-dashboard .cols-2 .panel-body{flex:1;min-height:0;overflow:auto;scrollbar-width:thin}
+#view-dashboard .cols-2 .list-row{padding:13px 18px}
+.today-label{margin-inline-start:10px;color:#c0d5cf;font-size:12px;font-weight:600}
+
+/* People: a visual directory with compact contact cards. */
+.people-feature{flex:none;height:145px;display:flex;align-items:stretch;overflow:hidden;border-radius:21px;background:#e7efeb;border:1px solid #d9e6df}
+.people-feature-copy{flex:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:16px 29px;min-width:0}
+.feature-kicker{display:inline-flex;align-items:center;gap:8px;color:#8d713d;font-size:12px;font-weight:800;letter-spacing:.025em}
+.feature-count{display:inline-grid;place-items:center;min-width:23px;height:23px;padding-inline:5px;border-radius:99px;background:#cbded5;color:#215c54;font-size:12px}
+.people-feature h2,.loans-heading h2,.archive-feature h2,.settings-heading h2{font:800 clamp(24px,2.5vw,32px)/1.18 Heebo,Assistant,sans-serif;letter-spacing:-.045em;color:#173d4d;margin:4px 0}
+.people-feature p{font-size:14px;color:#53726b;margin-bottom:11px}
+.people-feature .btn{min-height:35px;font-size:13px;padding-inline:18px}
+.people-feature-art{flex:0 0 33%;position:relative;background:linear-gradient(110deg,#c4dcd4,#edf3ea);overflow:hidden}
+.people-feature-art img{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
+#view-people .tabs{background:#dce8e1;padding:3px}
+#view-people .tab-btn{font-size:14px;min-height:36px}
+#view-people .tab-panel.active{gap:10px}
+#view-people .toolbar{margin:0}
+#view-people .table-wrap{background:transparent;box-shadow:none;border:0;overflow:auto}
+#view-people table{display:block;min-width:0;border-collapse:separate}
+#view-people thead{display:none}
+#view-people tbody{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+#view-people tbody tr{min-width:0;min-height:116px;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto;align-content:center;gap:2px 8px;padding:13px 16px;background:#fffefa;border:1px solid #e0e9e1;border-radius:16px;box-shadow:0 5px 15px rgba(26,64,57,.035)}
+#view-people tbody tr:hover{background:#f8fbf7;border-color:#afcfc0}
+#view-people tbody tr[hidden]{display:none}
+#view-people tbody td{display:block;border:0;padding:0;min-width:0}
+#view-people tbody td:first-child{grid-column:1;grid-row:1}
+#view-people tbody td:nth-child(2){grid-column:1;grid-row:2;color:#687d76;font-size:13px;padding-right:42px}
+#view-people tbody td:nth-child(3){grid-column:1;grid-row:3;padding-right:42px;font-size:12px;color:#6b7c77}
+#view-people tbody td:last-child{grid-column:2;grid-row:1/4;align-self:center}
+#view-people tbody .avatar{width:33px;height:33px}
+#view-people tbody .person-cell{gap:8px}
+#view-people tbody .cell-strong{font-size:15px}
+#view-people tbody .btn{font-size:12px;min-height:34px;padding-inline:12px}
+#view-people tbody td:last-child{display:flex;flex-direction:column;align-items:stretch;gap:5px}
+#view-people tbody tr.person-blacklisted{background:#fff6f1;border-color:#e5ac97}
+#view-people tbody .person-cell{flex-wrap:wrap}
+.person-blacklist-badge{display:inline-flex;align-items:center;white-space:nowrap;border-radius:99px;background:#f4d3c7;color:#a14332;font-size:10px;font-weight:800;padding:3px 8px}
+#view-people tbody .blacklist-toggle{min-height:29px;font-size:10px;padding-inline:8px;color:#60736f;border-color:#d8dfd9}
+.blacklist-toggle.is-blacklisted{background:#f9e6df;color:#963d2c;border-color:#dba692}
+#view-local-detail .view-header .blacklist-toggle,#view-person-detail .view-header .blacklist-toggle{min-height:34px;font-size:12px}
+
+/* Loans: a ledger with a slim summary band, then a searchable table. */
+.loans-heading,.settings-heading{flex:none;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:2px 3px}
+.loans-heading h2,.settings-heading h2{margin:1px 0}
+.loans-heading{min-height:67px;padding:7px 13px;border:1px solid #e9e2d7;border-radius:16px;background:#fffefa}
+.loans-title-wrap{display:flex;align-items:center;gap:10px;min-width:0}
+.loans-heading-art{width:68px;height:50px;overflow:hidden;border-radius:11px;background:#e5eeeb;flex:none}
+.loans-heading-art img{width:100%;height:100%;object-fit:cover;display:block}
+.loans-count{display:block;color:#70817b;font-size:12px;font-weight:700;white-space:nowrap}
+.loans-inline-stats{display:flex;align-items:center;justify-content:center;gap:0;min-width:0}
+.loans-inline-stats>span{display:flex;align-items:baseline;gap:8px;padding:5px 20px;border-inline-start:1px solid #e9e2d7;white-space:nowrap}
+.loans-inline-stats small{color:#71827b;font-size:12px;font-weight:700}
+.loans-inline-stats strong{color:#173d4d;font-size:18px;font-weight:800}
+.loans-inline-stats .inline-alert strong{color:#b45b45}
+#view-loans .loans-heading>.btn{min-height:36px;font-size:13px;padding-inline:16px}
+.loan-highlights{flex:none;height:100px;display:grid;grid-template-columns:1.2fr .8fr .8fr 1fr;align-items:stretch;overflow:hidden;background:#173d4d;border-radius:18px;color:#fff}
+.loan-highlight{display:flex;flex-direction:column;justify-content:center;gap:2px;padding:13px 22px;border-left:1px solid rgba(255,255,255,.12)}
+.loan-highlight span{color:#c3d8d3;font-size:12px;font-weight:700}
+.loan-highlight strong{font:800 clamp(20px,2vw,27px)/1.1 Heebo,Assistant,sans-serif;letter-spacing:-.035em}
+.loan-highlight-alert strong{color:#efbd9e}
+.loan-highlight-art{min-width:0;overflow:hidden;background:linear-gradient(115deg,#184e59,#276478)}
+.loan-highlight-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+#view-loans .toolbar{gap:11px}
+#view-loans .filter-tabs{flex:none}
+#view-loans .search-box{min-height:39px}
+#view-loans .table-wrap{border-radius:17px}
+#view-loans tbody tr[hidden]{display:none}
+#view-loans th{padding:8px 12px}
+#view-loans td{padding:8px 12px;font-size:13px}
+#view-loans td .btn{min-height:32px;padding-inline:12px;font-size:12px}
+
+/* Archive: quiet, separated from the active ledger. */
+.archive-feature{flex:none;height:151px;display:flex;align-items:stretch;overflow:hidden;border:1px solid #e6dbca;border-radius:20px;background:#f5eede}
+.archive-feature-copy{flex:1;min-width:0;padding:19px 27px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.archive-feature p{font-size:14px;color:#756f62;margin:4px 0 8px}
+.archive-total{font-size:13px;color:#946c35}
+.archive-feature-art{flex:0 0 30%;overflow:hidden;background:#eee2cf}
+.archive-feature-art img{display:block;width:100%;height:100%;object-fit:contain}
+#view-archive .table-wrap{background:transparent;border:0;box-shadow:none}
+#view-archive table{display:block;min-width:0;border-collapse:separate}
+#view-archive thead{display:none}
+#view-archive tbody{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#view-archive tbody tr{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto auto;align-items:center;min-width:0;gap:3px 12px;background:#fffefa;border:1px solid #e8dfd1;border-radius:17px;padding:17px 18px}
+#view-archive tbody td{border:0;padding:0;min-width:0}
+#view-archive tbody td:nth-child(1){grid-column:1;grid-row:1}
+#view-archive tbody td:nth-child(2){grid-column:1;grid-row:2}
+#view-archive tbody td:nth-child(3){grid-column:1;grid-row:3}
+#view-archive tbody td:nth-child(4){display:none}
+#view-archive tbody td:nth-child(5){grid-column:2;grid-row:1/4}
+
+/* Preferences and detail forms occupy a bounded content pane. */
+#view-settings>.cols-2b{flex:1;min-height:0;margin:0;align-items:stretch}
+#view-settings .form-card{min-height:0;overflow:auto}
+#view-settings .field label{font-size:14px}
+#view-settings .checkbox-row label{font-size:14px}
+#view-person-detail .tab-panel.active,#view-loan-detail .tab-panel.active{overflow:auto;scrollbar-width:thin}
+#view-person-detail .tab-panel.active>.panel,#view-loan-detail .tab-panel.active>.panel{flex:none}
+#view-person-new .form-card,#view-loan-new .form-card{display:flex;flex-direction:column}
+#view-person-new .wizard-panel.active,#view-loan-new .wizard-panel.active{flex:1;min-height:0;overflow:auto;scrollbar-width:thin}
+
+@media(max-width:1100px){
+  #view-people tbody{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .loan-highlights{grid-template-columns:1.2fr .8fr .8fr .7fr}
+  .loans-inline-stats>span{padding-inline:9px;gap:4px}
+}
+@media(max-width:980px){
+  .topnav{display:none}
+  .topbar{display:flex;flex:none;height:55px}
+  .content{padding:12px 16px 82px}
+  .bottom-nav{flex:none;height:68px;align-items:center}
+  #view-dashboard .dash-hero{min-height:145px}
+  #view-dashboard .dash-hero-image{min-height:145px}
+  #view-dashboard .dash-hero-copy{padding:18px 23px}
+  #view-dashboard .stats-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #view-dashboard .stat-card{min-height:78px;padding:12px}
+  #view-dashboard .stat-icon{display:none}
+  #view-dashboard .stat-body .value{font-size:21px}
+  #view-dashboard .stat-body .trend{display:none}
+  .loan-highlight-art{display:none}
+  .loan-highlights{grid-template-columns:1.2fr .8fr .8fr}
+  .loans-heading{min-height:61px}
+  .loans-heading-art{width:52px;height:42px}
+  .loans-inline-stats small{font-size:10px}
+  .loans-inline-stats strong{font-size:15px}
+}
+@media(max-width:680px){
+  .content{padding:9px 10px 76px}
+  .view.active{gap:9px}
+  .view-header{padding:11px 14px}
+  .view-header h2{font-size:20px}
+  .view-header .sub{font-size:12px}
+  #view-dashboard .dash-hero{height:116px;min-height:116px;display:flex}
+  #view-dashboard .dash-hero-copy{padding:12px 16px}
+  #view-dashboard .dash-eyebrow{font-size:11px;margin:0 0 4px}
+  #view-dashboard .dash-title{font-size:22px;margin:0}
+  #view-dashboard .dash-sub{display:none}
+  #view-dashboard .dash-hero-actions{margin-top:7px;gap:10px}
+  #view-dashboard .dash-hero-actions .btn{min-height:29px;font-size:11px;padding-inline:12px}
+  #view-dashboard .dash-hero-link{font-size:11px}
+  #view-dashboard .dash-hero-image{width:28%;height:116px;min-height:116px}
+  #view-dashboard .stats-row{gap:5px}
+  #view-dashboard .stat-card{min-height:66px;padding:8px;border-radius:12px}
+  #view-dashboard .stat-body .label{font-size:10px;line-height:1.15;margin-bottom:3px}
+  #view-dashboard .stat-body .value{font-size:17px}
+  #view-dashboard .cols-2{grid-template-columns:1fr;grid-template-rows:1.15fr .85fr;gap:7px}
+  #view-dashboard .cols-2 .panel-head{padding:7px 11px}
+  #view-dashboard .cols-2 .panel-head h3{font-size:13px}
+  #view-dashboard .cols-2 .panel-body .list-row{padding:7px 11px}
+  #view-dashboard .cols-2 .list-row .who{font-size:12px}
+  #view-dashboard .cols-2 .list-row .meta{font-size:10px}
+  #view-dashboard .cols-2 .list-row .amount{font-size:12px}
+  .people-feature{height:108px;border-radius:15px}
+  .people-feature-copy{padding:10px 14px}
+  .people-feature h2,.loans-heading h2,.archive-feature h2,.settings-heading h2{font-size:21px}
+  .people-feature p{display:none}
+  .people-feature .btn{margin-top:6px;min-height:28px;font-size:11px;padding-inline:12px}
+  .people-feature-art{flex-basis:31%}
+  #view-people tbody{grid-template-columns:1fr;gap:7px}
+  #view-people tbody tr{min-height:95px;padding:8px 12px}
+  #view-people tbody .btn{min-height:29px;font-size:11px}
+  #view-people tbody .blacklist-toggle{min-height:26px;font-size:10px}
+  #view-people .tabs{max-width:100%}
+  #view-people .tab-btn{font-size:12px;min-height:31px}
+  .loans-heading,.settings-heading{min-height:42px}
+  .loans-heading .btn,.settings-heading .btn{min-height:32px;font-size:11px;padding-inline:11px}
+  .loans-heading{display:grid;grid-template-columns:1fr auto;gap:4px 8px;padding:7px 10px}
+  .loans-heading-art{display:none}
+  .loans-heading h2{font-size:19px}
+  .loans-count{font-size:10px}
+  .loans-inline-stats{grid-column:1/-1;grid-row:2;justify-content:space-between;width:100%;border-top:1px solid #eee9e0}
+  .loans-inline-stats>span{border:0;padding:4px 1px}
+  .loans-inline-stats small{font-size:9px}
+  .loans-inline-stats strong{font-size:13px}
+  .loan-highlights{height:64px;border-radius:13px}
+  .loan-highlight{padding:8px 10px}
+  .loan-highlight span{font-size:10px}
+  .loan-highlight strong{font-size:16px}
+  #view-loans .toolbar{gap:6px}
+  #view-loans .filter-tabs{width:100%;justify-content:space-between}
+  #view-loans .filter-tab{padding:5px 8px;font-size:11px}
+  #view-loans .search-box{min-height:33px}
+  #view-loans .search-box input{min-height:31px;font-size:12px}
+  .archive-feature{height:105px}
+  .archive-feature-copy{padding:10px 14px}
+  .archive-feature p{font-size:11px}
+  .archive-feature-art{flex-basis:28%}
+  #view-archive tbody{grid-template-columns:1fr;gap:7px}
+  #view-archive tbody tr{padding:11px 13px}
+  #view-settings>.cols-2b{grid-template-columns:1fr;grid-template-rows:1fr 1fr;gap:7px}
+  #view-settings .form-card{padding:11px 13px}
+  #view-settings .field{margin-bottom:8px}
+  #view-settings .field input{min-height:32px;padding:5px 9px}
+  #view-settings .checkbox-row{padding:3px 0}
+  #view-settings .checkbox-row input{width:16px;height:16px}
+}
+@media(max-height:650px){
+  .content{padding-top:7px;padding-bottom:74px}
+  #view-dashboard .dash-hero{height:102px;min-height:102px}
+  #view-dashboard .dash-hero-image{height:102px;min-height:102px}
+  #view-dashboard .stats-row .stat-card{min-height:58px}
+  .people-feature{height:94px}
+  .archive-feature{height:90px}
+}
+
+/* Loans are scanned as compact records instead of full-width table lines. */
+#view-loans .table-wrap{background:transparent;border:0;box-shadow:none}
+#view-loans table{display:block;width:100%;min-width:0;border-collapse:separate}
+#view-loans thead{display:none}
+#view-loans tbody{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-content:start;gap:10px;padding:2px}
+#view-loans tbody tr:not(.local-empty-row){display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto auto;align-content:start;gap:5px 10px;min-width:0;min-height:157px;padding:13px 15px;background:#fffefa;border:1px solid #e2e6dd;border-radius:16px;box-shadow:0 5px 14px rgba(24,55,54,.035)}
+#view-loans tbody tr:not(.local-empty-row):hover{background:#f9fcf8;border-color:#b9d0c5}
+#view-loans tbody tr:not(.local-empty-row) td{display:block;min-width:0;padding:0;border:0;line-height:1.25;text-align:right;white-space:normal}
+#view-loans tbody tr:not(.local-empty-row) td:nth-child(1){grid-column:2;grid-row:1;color:#6e827b;font-size:11px;text-align:left;direction:ltr}
+#view-loans tbody tr:not(.local-empty-row) td:nth-child(2){grid-column:1;grid-row:1;color:#173d4d;font-size:15px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#view-loans tbody tr:not(.local-empty-row) td:nth-child(3){grid-column:1;grid-row:3;color:#60766e;font-size:11px}
+#view-loans tbody tr:not(.local-empty-row) td:nth-child(4){grid-column:2;grid-row:3;color:#70817b;font-size:11px;text-align:left}
+#view-loans tbody tr:not(.local-empty-row) td:nth-child(5){grid-column:2;grid-row:2;color:#173d4d;font-size:12px;font-weight:750;text-align:left}
+#view-loans tbody tr:not(.local-empty-row) td:nth-child(6){grid-column:1;grid-row:2;color:#173d4d;font-size:17px;font-weight:800}
+#view-loans tbody tr:not(.local-empty-row) td:nth-child(7){grid-column:1;grid-row:4;align-self:end}
+#view-loans tbody tr:not(.local-empty-row) td:nth-child(8){grid-column:2;grid-row:4;text-align:left;align-self:end}
+#view-loans tbody td:nth-child(3)::before{content:'סכום מקורי · ';color:#8a9b91;font-weight:600}
+#view-loans tbody td:nth-child(4)::before{content:'ניתנה · ';color:#8a9b91;font-weight:600}
+#view-loans tbody td:nth-child(5)::before{content:'להחזרה';display:block;color:#8a9b91;font-size:10px;font-weight:600}
+#view-loans tbody td:nth-child(6)::before{content:'יתרה להחזר';display:block;color:#8a9b91;font-size:10px;font-weight:600}
+#view-loans tbody tr.local-empty-row{grid-column:1/-1;background:#fffefa;border:1px solid #e2e6dd;border-radius:14px}
+#view-loans tbody tr.local-empty-row td{display:block!important}
+@media(max-width:1480px){#view-loans tbody{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:980px){#view-loans tbody{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){
+  #view-loans tbody{grid-template-columns:1fr;gap:7px}
+  #view-loans tbody tr:not(.local-empty-row){min-height:145px;padding:11px 13px}
+}

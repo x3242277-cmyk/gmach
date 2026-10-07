@@ -1,0 +1,217 @@
+#view-calendar .calendar-page-top{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:10px 0 23px;padding:0 4px}
+#view-calendar .calendar-kicker{display:block;color:#a77737;font-size:12px;font-weight:800;letter-spacing:.035em;margin-bottom:5px}
+#view-calendar .calendar-page-title h2{font:800 clamp(28px,2.8vw,38px)/1.2 Heebo,Assistant,sans-serif;letter-spacing:-.05em;color:#173d4d}
+#view-calendar .calendar-page-actions{display:flex;align-items:center;gap:14px}
+#view-calendar .calendar-current-date{color:#72817f;font-size:13px;font-weight:700}
+#view-calendar .calendar-today-btn{border:1px solid #d9ccb9;background:#fffefa;color:#173d4d;border-radius:999px;padding:8px 18px;font-size:13px;font-weight:800;box-shadow:0 4px 12px rgba(24,49,53,.04)}
+#view-calendar .calendar-today-btn:hover{background:#f4ede1;border-color:#cba66f}
+#view-calendar .calendar-layout{display:grid;grid-template-columns:minmax(0,1fr) 304px;gap:19px;align-items:stretch;direction:rtl}
+#view-calendar .calendar-card{grid-column:1;min-width:0;background:#fffefa;border:1px solid #e5dfd2;border-radius:24px;overflow:hidden;box-shadow:0 12px 35px rgba(24,49,53,.055)}
+#view-calendar .calendar-card-head{min-height:96px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(115deg,#fffefa 35%,#f4efe4);border-bottom:1px solid #e7e1d6}
+#view-calendar .calendar-month{font:800 25px/1.2 Heebo,Assistant,sans-serif;color:#173d4d;letter-spacing:-.045em}
+#view-calendar .calendar-month-sub{font-size:12px;color:#8a948e;font-weight:700;margin-top:5px}
+#view-calendar .calendar-month-nav{display:flex;gap:7px;direction:rtl}
+#view-calendar .calendar-month-nav button{width:38px;height:38px;display:grid;place-items:center;background:#fffefa;border:1px solid #ddd4c5;border-radius:12px;color:#173d4d;font-size:20px;line-height:1;transition:background .18s,border-color .18s}
+#view-calendar .calendar-month-nav button:hover{background:#e8efec;border-color:#aec8bf}
+#view-calendar .calendar-weekdays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));background:#f0f4f0;border-bottom:1px solid #e4e9e2}
+#view-calendar .calendar-weekdays span{text-align:right;color:#6b7d79;font-size:11.5px;font-weight:800;padding:11px 12px}
+#view-calendar .calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px;background:#e9e8e2;direction:rtl}
+#view-calendar .calendar-day{min-width:0;min-height:104px;position:relative;display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:10px 8px;background:#fffefa;border:0;border-radius:0;text-align:right;cursor:pointer;transition:background .16s}
+#view-calendar .calendar-day:hover{background:#f2f7f3}
+#view-calendar .calendar-day.is-weekend{background:#fdfbf6}
+#view-calendar .calendar-day.is-weekend:hover{background:#f2f7f3}
+#view-calendar .calendar-day.is-outside{background:#f8f7f3;color:#b2b9b4}
+#view-calendar .calendar-day.is-selected{background:#e9f2ee;box-shadow:inset 0 0 0 2px #3d7d73;z-index:1}
+#view-calendar .calendar-day-date{display:flex;align-items:start;justify-content:space-between;gap:3px;min-width:0}
+#view-calendar .calendar-day-number{width:27px;height:27px;display:grid;place-items:center;border-radius:50%;color:#3c595e;font-size:13px;font-weight:800;line-height:1}
+#view-calendar .calendar-hebrew-date{padding-top:5px;color:#8c9890;font-size:10px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#view-calendar .calendar-day.is-outside .calendar-day-number{color:#b6bdb9}
+#view-calendar .calendar-day.is-outside .calendar-hebrew-date{color:#b9c0b9}
+#view-calendar .calendar-day.is-today .calendar-day-number{background:#173d4d;color:#fff}
+#view-calendar .calendar-holiday{display:block;width:100%;padding:2px 5px;border-radius:5px;background:#f9f2e5;color:#986a31;font-size:10px;font-weight:800;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#view-calendar .calendar-day-event{display:block;width:100%;padding:5px 7px 6px;border-radius:7px;border-right:3px solid #ca9957;background:#fbefd9;color:#8c652b;font-size:11.5px;font-weight:800;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#view-calendar .calendar-day-event.is-overdue{background:#f9e6df;color:#a94e36;border-right-color:#c96345}
+#view-calendar .calendar-day-event.is-future{background:#e6f1ed;color:#306d62;border-right-color:#4d9683}
+#view-calendar .calendar-day-event.is-deposit{background:#e7eff3;color:#2b6573;border-right-color:#5c94a3}
+#view-calendar .calendar-day-event.is-deposit.is-overdue{background:#f9e6df;color:#a94e36;border-right-color:#c96345}
+#view-calendar .calendar-legend{display:flex;align-items:center;gap:19px;min-height:52px;padding:10px 22px;border-top:1px solid #e8e3d8;color:#73827d;font-size:11.5px;font-weight:700;flex-wrap:wrap}
+#view-calendar .calendar-legend>span{display:inline-flex;align-items:center;gap:7px}
+#view-calendar .calendar-legend-dot{width:8px;height:8px;display:inline-block;border-radius:50%}
+#view-calendar .calendar-dot-due{background:#bd8740}
+#view-calendar .calendar-dot-overdue{background:#c96345}
+#view-calendar .calendar-dot-deposit{background:#5c94a3}
+#view-calendar .calendar-legend-note{margin-inline-start:auto;color:#396f68}
+#view-calendar .calendar-upcoming{grid-column:2;position:relative;isolation:isolate;overflow:hidden;min-height:100%;border-radius:24px;background:#173d4d;color:#fff;box-shadow:0 15px 34px rgba(19,57,70,.15)}
+#view-calendar .calendar-upcoming:after{content:"";position:absolute;bottom:-8px;left:0;right:0;height:135px;background:url('jerusalem-skyline.svg') center bottom/cover no-repeat;opacity:.11;pointer-events:none;z-index:-1}
+#view-calendar .calendar-upcoming-head{padding:25px 24px 21px;border-bottom:1px solid rgba(255,255,255,.13);background:radial-gradient(circle at 0 0,rgba(217,171,100,.15),transparent 62%)}
+#view-calendar .calendar-upcoming-eyebrow{color:#e9bd82;font-size:11px;font-weight:800;letter-spacing:.04em}
+#view-calendar .calendar-upcoming h3{font:800 23px/1.2 Heebo,Assistant,sans-serif;letter-spacing:-.04em;margin:6px 0 5px}
+#view-calendar .calendar-upcoming-head p{font-size:12px;color:#c2d2cd}
+#view-calendar .calendar-upcoming-list{position:relative;z-index:1;padding:10px 12px 12px}
+#view-calendar .calendar-upcoming-item{display:flex;align-items:center;gap:11px;width:100%;min-height:80px;padding:11px 9px;border:0;border-bottom:1px solid rgba(255,255,255,.13);background:transparent;color:#fff;text-align:right;transition:background .16s;border-radius:9px}
+#view-calendar .calendar-upcoming-item:hover{background:rgba(255,255,255,.08)}
+#view-calendar .calendar-upcoming-item.is-selected{background:rgba(239,196,132,.17)}
+#view-calendar .calendar-upcoming-item:last-child{border-bottom:0}
+#view-calendar .calendar-upcoming-date{flex:0 0 51px;height:57px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:11px;background:#f3dfbc;color:#173d4d;line-height:1}
+#view-calendar .calendar-upcoming-date b{font:800 21px/1 Heebo,Assistant,sans-serif}
+#view-calendar .calendar-upcoming-date small{font-size:10px;font-weight:800;margin-top:4px}
+#view-calendar .calendar-upcoming-date.is-overdue{background:#efb5a4;color:#69352b}
+#view-calendar .calendar-upcoming-date.is-deposit{background:#d5e9eb;color:#215565}
+#view-calendar .calendar-upcoming-date.is-deposit.is-overdue{background:#efb5a4;color:#69352b}
+#view-calendar .calendar-upcoming-info{display:block;min-width:0;flex:1}
+#view-calendar .calendar-upcoming-name{display:block;font-size:13.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#view-calendar .calendar-upcoming-meta{display:block;color:#b8cfca;font-size:11px;margin-top:3px}
+#view-calendar .calendar-upcoming-amount{display:block;font-size:13px;font-weight:800;margin-top:4px}
+#view-calendar .calendar-upcoming-overdue{padding:12px 12px 5px;color:#e8b5a7;font-size:11px;font-weight:800}
+#view-calendar .calendar-upcoming-empty{padding:20px 12px;color:#c8d9d5;font-size:12px;line-height:1.5}
+#view-calendar .calendar-selected{position:relative;z-index:1;margin:12px;padding:15px 16px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.09);border-radius:14px}
+#view-calendar .calendar-selected[hidden]{display:none}
+#view-calendar .calendar-selected h4{font-size:12px;color:#f1c995;margin:0 0 7px}
+#view-calendar .calendar-selected p{font-size:12px;line-height:1.55;color:#eaf2ef;margin:0}
+
+@media(max-width:1050px){
+  #view-calendar .calendar-layout{grid-template-columns:minmax(0,1fr) 260px;gap:13px}
+  #view-calendar .calendar-day{min-height:92px;padding:7px 5px}
+  #view-calendar .calendar-day-event{font-size:10px;padding-inline:5px}
+  #view-calendar .calendar-weekdays span{padding-inline:7px;font-size:10px}
+}
+@media(max-width:800px){
+  #view-calendar .calendar-layout{grid-template-columns:minmax(0,1fr)}
+  #view-calendar .calendar-card,#view-calendar .calendar-upcoming{grid-column:1}
+  #view-calendar .calendar-upcoming{min-height:0}
+  #view-calendar .calendar-upcoming-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 15px}
+  #view-calendar .calendar-upcoming-overdue{grid-column:1/-1}
+}
+@media(max-width:560px){
+  #view-calendar .calendar-page-top{align-items:start}
+  #view-calendar .calendar-page-actions{gap:6px}
+  #view-calendar .calendar-current-date{display:none}
+  #view-calendar .calendar-today-btn{padding:7px 12px}
+  #view-calendar .calendar-card-head{min-height:76px;padding:15px 16px}
+  #view-calendar .calendar-month{font-size:21px}
+  #view-calendar .calendar-month-nav button{width:34px;height:34px}
+  #view-calendar .calendar-weekdays span{font-size:0;text-align:center;padding:9px 0}
+  #view-calendar .calendar-weekdays span:after{content:attr(data-short);font-size:11px}
+  #view-calendar .calendar-day{min-height:66px;gap:4px;padding:5px 3px}
+  #view-calendar .calendar-day-number{width:23px;height:23px;font-size:11px}
+  #view-calendar .calendar-hebrew-date{padding-top:4px;font-size:9px}
+  #view-calendar .calendar-hebrew-month{display:none}
+  #view-calendar .calendar-holiday{padding:1px 2px;font-size:8px}
+  #view-calendar .calendar-day-event{font-size:0;height:6px;width:70%;padding:0;border:0;border-radius:99px;background:#c5934b;margin-top:0}
+  #view-calendar .calendar-day-event.is-future{background:#4d9683}
+  #view-calendar .calendar-day-event.is-overdue{background:#c96345}
+  #view-calendar .calendar-legend{padding:10px 13px;gap:11px;font-size:10px}
+  #view-calendar .calendar-legend-note{display:none}
+  #view-calendar .calendar-upcoming-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 7px}
+}
+
+/* Keep the whole calendar screen within the app's available viewport. */
+#view-calendar.active{display:flex;flex-direction:column;height:100%;min-height:0;overflow:hidden}
+#view-calendar .calendar-page-top{flex:none}
+#view-calendar .calendar-layout{flex:1;min-height:0;overflow:hidden}
+#view-calendar .calendar-card{display:flex;flex-direction:column;min-height:0}
+#view-calendar .calendar-grid{flex:1;min-height:0;grid-auto-rows:minmax(0,1fr)}
+#view-calendar .calendar-day{min-height:0}
+#view-calendar .calendar-upcoming{display:flex;flex-direction:column;min-height:0}
+#view-calendar .calendar-upcoming-head{flex:none}
+#view-calendar .calendar-upcoming-list{flex:1;min-height:0;overflow-y:auto;scrollbar-width:thin}
+#view-calendar .calendar-selected{flex:none}
+
+@media(max-width:800px){
+  #view-calendar .calendar-layout{grid-template-rows:minmax(0,1fr) minmax(105px,22%)}
+  #view-calendar .calendar-upcoming-head{padding:10px 16px}
+  #view-calendar .calendar-upcoming-eyebrow,#view-calendar .calendar-upcoming-head p{display:none}
+  #view-calendar .calendar-upcoming h3{font-size:15px;margin:0}
+  #view-calendar .calendar-upcoming-list{padding:2px 8px;gap:0 8px}
+  #view-calendar .calendar-upcoming-item{min-height:51px;padding:4px;border-bottom-color:rgba(255,255,255,.09)}
+  #view-calendar .calendar-upcoming-date{flex-basis:34px;height:38px;border-radius:7px}
+  #view-calendar .calendar-upcoming-date b{font-size:15px}
+  #view-calendar .calendar-upcoming-date small{font-size:8px;margin-top:2px}
+  #view-calendar .calendar-upcoming-name{font-size:11px}
+  #view-calendar .calendar-upcoming-meta{font-size:9px;margin-top:1px}
+  #view-calendar .calendar-upcoming-amount{font-size:10px;margin-top:1px}
+  #view-calendar .calendar-upcoming-overdue{padding:5px 5px 0}
+  #view-calendar .calendar-selected{display:none}
+}
+@media(max-width:560px){
+  #view-calendar .calendar-page-top{margin:2px 0 9px}
+  #view-calendar .calendar-kicker{display:none}
+  #view-calendar .calendar-page-title h2{font-size:23px}
+  #view-calendar .calendar-card-head{min-height:55px;padding:9px 12px}
+  #view-calendar .calendar-month{font-size:18px}
+  #view-calendar .calendar-month-sub{display:block;font-size:9px;line-height:1.15;white-space:nowrap;max-width:210px;overflow:hidden;text-overflow:ellipsis}
+  #view-calendar .calendar-legend{display:none}
+  #view-calendar .calendar-weekdays span{padding:5px 0}
+  #view-calendar .calendar-day{padding:2px;gap:1px}
+  #view-calendar .calendar-day-number{width:18px;height:18px;font-size:9px}
+  #view-calendar .calendar-hebrew-date{padding-top:3px;font-size:8px}
+  #view-calendar .calendar-holiday{padding:0 1px;font-size:7px;line-height:1.15;background:transparent}
+  #view-calendar .calendar-day-event{height:4px}
+}
+@media(max-height:650px) and (max-width:800px){
+  #view-calendar .calendar-layout{grid-template-rows:minmax(0,1fr) 96px}
+  #view-calendar .calendar-upcoming-head{padding:6px 12px}
+  #view-calendar .calendar-upcoming h3{font-size:13px}
+  #view-calendar .calendar-card-head{min-height:46px}
+  #view-calendar .calendar-day-event{display:none}
+}
+
+/* More room for the month itself: compact page and month headings. */
+#view-calendar .calendar-page-top{align-items:center;margin:0 0 6px;padding:0 2px;min-height:42px}
+#view-calendar .calendar-kicker{display:none}
+#view-calendar .calendar-page-title h2{font-size:clamp(23px,2vw,28px);line-height:1.1}
+#view-calendar .calendar-card-head{min-height:64px;padding:9px 19px}
+#view-calendar .calendar-month{font-size:22px}
+#view-calendar .calendar-month-sub{margin-top:2px;font-size:11px}
+#view-calendar .calendar-month-nav button{width:34px;height:34px}
+#view-calendar .calendar-upcoming-head{padding:13px 18px 11px}
+#view-calendar .calendar-upcoming-eyebrow,#view-calendar .calendar-upcoming-head p{display:none}
+#view-calendar .calendar-upcoming h3{font-size:19px;margin:0}
+@media(max-width:560px){
+  #view-calendar .calendar-page-top{min-height:32px;margin-bottom:5px}
+  #view-calendar .calendar-page-title h2{font-size:21px}
+  #view-calendar .calendar-card-head{min-height:50px;padding:7px 11px}
+  #view-calendar .calendar-month{font-size:17px}
+  #view-calendar .calendar-month-nav button{width:30px;height:30px}
+  #view-calendar .calendar-upcoming-head{padding:7px 12px}
+  #view-calendar .calendar-upcoming h3{font-size:14px}
+}
+
+/* A focused two-week calendar gives each repayment enough room to read. */
+#view-calendar .calendar-grid{grid-template-rows:repeat(2,minmax(0,1fr))}
+#view-calendar .calendar-weekday-name,#view-calendar .calendar-month-mobile,#view-calendar .calendar-day-empty{display:none}
+#view-calendar .calendar-day{gap:10px;padding:13px 11px;overflow:auto;scrollbar-width:thin}
+#view-calendar .calendar-day.is-past{background:#f9f8f4}
+#view-calendar .calendar-day-number{width:34px;height:34px;font-size:16px}
+#view-calendar .calendar-hebrew-date{font-size:12px;padding-top:8px}
+#view-calendar .calendar-holiday{font-size:11px;padding:5px 7px;white-space:normal}
+#view-calendar .calendar-day-event{font-size:13px;line-height:1.35;padding:8px 9px;white-space:normal;overflow:visible;text-overflow:clip}
+#view-calendar .calendar-weekdays span{font-size:12px;padding:8px 10px}
+#view-calendar .calendar-legend{min-height:33px;padding:6px 17px}
+@media(max-width:800px){
+  #view-calendar .calendar-layout{grid-template-rows:minmax(0,1fr) 135px}
+  #view-calendar .calendar-day{gap:5px;padding:6px 4px}
+  #view-calendar .calendar-day-number{width:24px;height:24px;font-size:11px}
+  #view-calendar .calendar-hebrew-date{font-size:9px;padding-top:4px}
+  #view-calendar .calendar-holiday{font-size:8px;padding:2px 3px}
+  #view-calendar .calendar-day-event{font-size:9px;line-height:1.2;padding:4px 2px;white-space:normal;border-right-width:2px}
+}
+@media(max-width:560px){
+  #view-calendar .calendar-layout{grid-template-rows:minmax(0,1fr) 122px}
+  #view-calendar .calendar-weekdays{display:none}
+  #view-calendar .calendar-grid{display:block;overflow-y:auto;scrollbar-width:thin;background:#fffefa}
+  #view-calendar .calendar-day{display:grid;grid-template-columns:95px minmax(0,1fr);align-content:center;gap:4px 8px;width:100%;min-height:76px;padding:8px 10px;border-bottom:1px solid #e8e5db;overflow:visible}
+  #view-calendar .calendar-day-date{grid-column:1;grid-row:1 / span 4;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px}
+  #view-calendar .calendar-weekday-name{display:block;font-size:11px;font-weight:800;color:#173d4d}
+  #view-calendar .calendar-gregorian{display:flex;align-items:center;gap:4px}
+  #view-calendar .calendar-month-mobile{display:block;font-size:10px;font-weight:700;color:#687b78}
+  #view-calendar .calendar-day-number{width:24px;height:24px;font-size:13px}
+  #view-calendar .calendar-hebrew-date{font-size:10px;padding:0;white-space:normal}
+  #view-calendar .calendar-hebrew-month{display:inline}
+  #view-calendar .calendar-holiday{grid-column:2;font-size:10px;line-height:1.25;padding:3px 5px;white-space:normal}
+  #view-calendar .calendar-day-event{grid-column:2;display:block;width:100%;height:auto;min-height:0;font-size:11px;line-height:1.25;padding:5px 6px;border-radius:5px;white-space:normal;color:#306d62}
+  #view-calendar .calendar-day-event.is-future{background:#e6f1ed;color:#306d62;border-right:2px solid #4d9683}
+  #view-calendar .calendar-day-event.is-overdue{background:#f9e6df;color:#a94e36;border-right:2px solid #c96345}
+  #view-calendar .calendar-day-empty{grid-column:2;display:block;font-size:10px;color:#9aa6a1}
+  #view-calendar .calendar-day-event.is-deposit.is-future{background:#e7eff3;color:#2b6573;border-right-color:#5c94a3}
+}
